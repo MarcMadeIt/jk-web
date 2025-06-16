@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "JK";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0.003 247.858);
+  --color-base-300: oklch(96% 0.007 247.896);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(45% 0.085 224.283);
+  --color-primary-content: oklch(98% 0.002 247.839);
+  --color-secondary: oklch(57% 0.245 27.325);
+  --color-secondary-content: oklch(98% 0.016 73.684);
+  --color-accent: oklch(52% 0.105 223.128);
+  --color-accent-content: oklch(98% 0.016 73.684);
+  --color-neutral: oklch(27% 0.006 286.033);
+  --color-neutral-content: oklch(98% 0 0);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(77% 0.152 181.912);
+  --color-success-content: oklch(27% 0.046 192.524);
+  --color-warning: oklch(75% 0.183 55.934);
+  --color-warning-content: oklch(26% 0.079 36.259);
+  --color-error: oklch(71% 0.202 349.761);
+  --color-error-content: oklch(28% 0.109 3.907);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+
+/* Bullet & number list fix */
+.tiptap-list-style ul {
+  padding-left: 0.7rem;
+  list-style-position: inside;
+}
+
+.tiptap-list-style ul>li {
+  list-style-type: disc;
+  display: list-item;
+}
+
+
+.tiptap-list-style li>p {
+  margin: 0;
+  display: inline;
+}
+
+.tiptap-list-style h3 {
+  @apply text-lg font-bold mt-3 mb-2;
+}
+
+.tiptap-list-style h4 {
+  @apply text-lg font-medium mt-2 mb-1;
+}
