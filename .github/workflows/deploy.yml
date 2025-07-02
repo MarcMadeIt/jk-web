@@ -52,8 +52,8 @@ jobs:
           echo "🧹 Cleaning up old PM2 instance if any..."
           pm2 delete jk-web-app || true
 
-          echo "🚀 Starting app with PM2 on port 7001..."
-          PORT=7001 pm2 start npm --name "jk-web-app" -- start
+          echo "🚀 Starting app with PM2 on port 3700..."
+          pm2 start npm --name "jk-web-app" -- start -- -p 3700
           pm2 save
           pm2 list
 
