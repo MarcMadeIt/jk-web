@@ -72,7 +72,7 @@ const News = () => {
               className="btn btn-primary"
               aria-label={t("aria.cases.createCase")}
             >
-              {t("create")} Case
+              {t("create")} Nyhed
             </button>
             <NewsListChange onViewChange={handleViewChange} />
           </div>

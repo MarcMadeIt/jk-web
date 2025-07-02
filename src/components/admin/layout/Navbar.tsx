@@ -26,11 +26,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-between bg-base-200 rounded-lg sm:fixed sm:h-full md:py-0 md:pr-0">
+    <div className="flex flex-col items-center justify-between bg-base-100 rounded-lg sm:fixed sm:h-full md:py-0 md:pr-0">
       <div className="flex flex-col sm:gap-5 h-full ">
         <div className="flex flex-col items-center justify-center h-32 w-full text-xl">
-          <Image src="/icon-192x192.png" alt="" width={60} height={60} />
-          <span className="font-bold">ADMIN</span>
+          <Image src="/jk-flag.png" alt="" width={60} height={60} />
+          <span className="font-bold mt-1">ADMIN</span>
         </div>
         <div className="hidden sm:flex">
           <ul className="menu menu-lg gap-2 rounded-box w-56 xl:w-72">

@@ -25,7 +25,7 @@ export default function NotFound() {
             {t("notFound.home")}
           </Link>
           <Link
-            href="/contact"
+            href="/kontakt"
             className="btn btn-primary btn-outline md:text-lg"
           >
             {t("notFound.contact")}

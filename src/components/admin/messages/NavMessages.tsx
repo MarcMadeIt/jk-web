@@ -19,7 +19,7 @@ const NavMessages = () => {
           role="tab"
           className={`tab gap-2  ${
             activeTab === "users"
-              ? "tab-active bg-base-200 rounded-lg shadow-md"
+              ? "tab-active bg-base-100 rounded-lg shadow-md"
               : ""
           }`}
           onClick={() => setActiveTab("users")}
@@ -32,7 +32,7 @@ const NavMessages = () => {
           role="tab"
           className={`tab gap-2  ${
             activeTab === "extra"
-              ? "tab-active bg-base-200 rounded-lg shadow-md"
+              ? "tab-active bg-base-100 rounded-lg shadow-md"
               : ""
           }`}
           onClick={() => setActiveTab("extra")}
@@ -45,12 +45,12 @@ const NavMessages = () => {
 
       <div className="mt-3 md:mt-5">
         {activeTab === "users" && (
-          <div className="bg-base-200 rounded-lg shadow-md p-3 md:p-7">
+          <div className="bg-base-100 rounded-lg shadow-md p-3 md:p-7">
             <Requests />
           </div>
         )}
         {activeTab === "extra" && (
-          <div className="bg-base-200 rounded-lg shadow-md p-3 md:p-7">
+          <div className="bg-base-100 rounded-lg shadow-md p-3 md:p-7">
             <Bookings />
           </div>
         )}

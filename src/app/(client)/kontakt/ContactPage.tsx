@@ -1,9 +1,9 @@
 "use client";
 
-import OfferForm from "@/components/client/forms/OfferForm";
+import OfferForm from "@/components/client/forms/ContactForm";
 import Image from "next/image";
 import React from "react";
-import { FaPhone } from "react-icons/fa6";
+import { FaEnvelope, FaPhone } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -14,8 +14,7 @@ const ContactPage = () => {
     <div className="p-5 sm:p-7 w-full h-full flex flex-col gap-10 md:gap-15 xl:gap-28 justify-center items-center relative my-20">
       <div className="max-w-md md:max-w-xl">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-          {t("ContactPage.title")}{" "}
-          <span className="text-primary">{t("ContactPage.subtitle")}</span>
+          {t("contactPage.title")}
         </h1>
       </div>
       <motion.div
@@ -34,23 +33,29 @@ const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
-            <h3 className="text-xl font-bold">{t("ContactPage.readyTitle")}</h3>
-            <p className="font-medium">{t("ContactPage.contactPrompt")}</p>
-            <p>{t("ContactPage.ambitionMessage")}</p>
-            <p className="font-medium">{t("ContactPage.callPrompt")}</p>
+            <h3 className="text-xl font-bold">{t("contactPage.readyTitle")}</h3>
+            <p className="font-medium">{t("contactPage.contactPrompt")}</p>
+            <p>{t("contactPage.ambitionMessage")}</p>
+            <p className="font-medium">{t("contactPage.callmailPrompt")}</p>
             <a
               href="tel:+4522501703"
               className="flex items-center gap-2 text-secondary text-xl font-bold"
             >
-              <FaPhone /> {t("ContactPage.phoneNumber")}
+              <FaPhone size={20} /> {t("contactPage.phoneNumber")}
+            </a>
+            <a
+              href={`mailto:${t("contactPage.emailAddress")}`}
+              className="flex items-center gap-2 text-secondary text-base font-bold"
+            >
+              <FaEnvelope size={20} /> {t("contactPage.emailAddress")}
             </a>
           </motion.div>
           <Image
-            src="/elements/rocket.png"
-            alt={t("ContactPage.imageAlt")}
+            src="/jk-flag.png"
+            alt={t("contactPage.imageAlt")}
             width={200}
             height={200}
-            className="w-28 h-auto absolute rotate-45 bottom-10 right-32 hidden lg:block"
+            className="w-28 h-auto absolute bottom-0 right-32 hidden lg:block"
           />
         </div>
       </motion.div>

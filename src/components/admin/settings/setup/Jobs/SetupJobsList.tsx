@@ -14,10 +14,10 @@ interface Job {
 }
 
 interface SetupJobsListProps {
-  onEdit: (job: Job) => void;
+  onViewDetails: (job: Job) => void;
 }
 
-const SetupJobsList = ({ onEdit }: SetupJobsListProps) => {
+const SetupJobsList = ({ onViewDetails }: SetupJobsListProps) => {
   const { t } = useTranslation();
 
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -83,7 +83,7 @@ const SetupJobsList = ({ onEdit }: SetupJobsListProps) => {
             </div>
           </div>
           <div>
-            <button className="btn btn-sm" onClick={() => onEdit(job)}>
+            <button className="btn btn-sm" onClick={() => onViewDetails(job)}>
               <span className="md:flex hidden">{t("jobsDetails.details")}</span>
               <FaAngleRight />
             </button>

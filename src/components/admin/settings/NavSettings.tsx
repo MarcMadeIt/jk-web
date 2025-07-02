@@ -14,13 +14,13 @@ const NavSettings = () => {
     <div className="w-full">
       <div
         role="tablist"
-        className="tabs sm:tabs-lg w-full md:w-96 text-[15px]"
+        className="tabs sm:tabs-lg w-full md:w-[400px] text-[15px]"
       >
         <button
           role="tab"
           className={`tab gap-2  ${
             activeTab === "setup"
-              ? "tab-active bg-base-200 rounded-lg shadow-md"
+              ? "tab-active bg-base-100 rounded-lg shadow-md"
               : ""
           }`}
           onClick={() => setActiveTab("setup")}
@@ -33,7 +33,7 @@ const NavSettings = () => {
           role="tab"
           className={`tab gap-2  ${
             activeTab === "users"
-              ? "tab-active bg-base-200 rounded-lg shadow-md"
+              ? "tab-active bg-base-100 rounded-lg shadow-md"
               : ""
           }`}
           onClick={() => setActiveTab("users")}
@@ -46,12 +46,12 @@ const NavSettings = () => {
 
       <div className="mt-3 md:mt-5">
         {activeTab === "setup" && (
-          <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
+          <div className="">
             <Setup />
           </div>
         )}
         {activeTab === "users" && (
-          <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
+          <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
             <Users />
           </div>
         )}

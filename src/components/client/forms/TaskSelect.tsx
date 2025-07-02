@@ -19,26 +19,31 @@ const TaskSelect = ({ onChange }: ContactSelectProps) => {
 
   return (
     <fieldset className="fieldset">
-      <legend className="fieldset-legend">{t("TaskSelect.legend")}</legend>
+      <legend className="fieldset-legend">{t("taskSelect.legend")}</legend>
       <label className="form-control w-full">
         <select
           className="select select-ghost bg-base-200 select-md w-full md:max-w-xs"
           value={selectedOption}
           onChange={handleChange}
-          aria-label={t("TaskSelect.aria.selectTask")}
+          aria-label={t("taskSelect.aria.selectTask")}
           required
         >
           <option value="" disabled>
-            {t("TaskSelect.placeholder")}
+            {t("taskSelect.placeholder")}
           </option>
-          <option value="Website">{t("TaskSelect.options.website")}</option>
-          <option value="Web App">{t("TaskSelect.options.webApp")}</option>
-          <option value="3D Visualization">
-            {t("TaskSelect.options.visualization")}
+          <option value="Kørekort til Bil">
+            {t("taskSelect.options.car")}
           </option>
-          <option value="Branding">{t("TaskSelect.options.branding")}</option>
-          <option value="Marketing">{t("TaskSelect.options.marketing")}</option>
-          <option value="Other">{t("TaskSelect.options.other")}</option>
+          <option value="Kørekort til Trailer">
+            {t("taskSelect.options.trailer")}
+          </option>
+          <option value="Kørekort til Traktor">
+            {t("taskSelect.options.traktor")}
+          </option>
+          <option value="Generhvervelse af kørekort">
+            {t("taskSelect.options.generhvervelse")}
+          </option>
+          <option value="Other">{t("taskSelect.options.other")}</option>
         </select>
       </label>
     </fieldset>

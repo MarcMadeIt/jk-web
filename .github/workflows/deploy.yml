@@ -1,4 +1,4 @@
-name: Deploy Arzonic to VPS
+name: Deploy JK Web to VPS
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: 🔄 Pull latest code from GitHub
         run: |
           echo "⚠️ Pulling latest changes..."
-          cd /home/arzonic/htdocs/arzonic.com
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
           git fetch --all
           git reset --hard origin/main
 
@@ -26,13 +26,13 @@ jobs:
         run: |
           set -e
           echo "📦 Installing dependencies..."
-          cd /home/arzonic/htdocs/arzonic.com
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
           npm ci
 
       - name: 🔧 Build Next.js project
         run: |
           set -e
-          cd /home/arzonic/htdocs/arzonic.com
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
           echo "⚡ Building Next.js app..."
           npm run build
           if [ ! -d ".next" ]; then
@@ -47,13 +47,13 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-          cd /home/arzonic/htdocs/arzonic.com
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
 
           echo "🧹 Cleaning up old PM2 instance if any..."
-          pm2 delete arzonic-app || true
+          pm2 delete jk-web-app || true
 
-          echo "🚀 Starting app with PM2 on port 7000..."
-          PORT=7000 pm2 start npm --name "arzonic-app" -- start
+          echo "🚀 Starting app with PM2 on port 7001..."
+          PORT=7001 pm2 start npm --name "jk-web-app" -- start
           pm2 save
           pm2 list
 

@@ -20,6 +20,7 @@
     "@tiptap/react": "^2.12.0",
     "@tiptap/starter-kit": "^2.12.0",
     "autoprefixer": "^10.4.20",
+    "cheerio": "^1.1.0",
     "daisyui": "^5.0.13",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.0.6",
@@ -56,5 +57,8 @@
     "eslint-config-next": "15.1.4",
     "typescript": "^5",
     "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "resolutions": {
+    "@img/sharp-libvips-darwin-arm64": "8.16.1"
   }
 }

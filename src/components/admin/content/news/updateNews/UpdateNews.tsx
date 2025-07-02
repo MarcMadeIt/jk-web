@@ -10,25 +10,17 @@ const UpdateNews = ({
   newsId: number;
   onCaseUpdated: () => void;
 }) => {
-  const [company, setCompany] = useState("");
+  const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [city, setCity] = useState("");
   const [image, setImage] = useState<File | null>(null);
-  const [contact, setContact] = useState("");
-  const [country, setCountry] = useState("");
-  const [website, setWebsite] = useState("");
 
   const [existingImage, setExistingImage] = useState<string | null>(null);
 
   const [errors, setErrors] = useState({
-    company: "",
+    title: "",
     desc: "",
-    city: "",
-    country: "",
     image: "",
     created_at: "",
-    contact: "",
-    website: "",
   });
   const [loading, setLoading] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -42,13 +34,10 @@ const UpdateNews = ({
           console.error(t("case_not_found"));
           return;
         }
-        setCompany(caseData.company || "");
+        setTitle(caseData.title || "");
         setDesc(caseData.desc || "");
-        setCity(caseData.city || "");
-        setCountry(caseData.country || "");
+
         setExistingImage(caseData.image || null);
-        setContact(caseData.contact || "");
-        setWebsite(caseData.website || "");
 
         setCreatedAt(
           caseData.created_at
@@ -67,16 +56,12 @@ const UpdateNews = ({
     e.preventDefault();
     setLoading(true);
 
-    if (!company || !desc || !city || !country || !contact) {
+    if (!title || !desc) {
       setErrors({
-        company: !company ? t("company_name_required") : "",
+        title: !title ? t("title_required") : "",
         desc: !desc ? t("desc_required") : "",
-        city: !city ? t("city_required") : "",
-        country: !country ? t("country_required") : "",
         image: "",
         created_at: "",
-        contact: !contact ? t("contact_person_required") : "",
-        website: "",
       });
       setLoading(false);
       return;
@@ -85,28 +70,14 @@ const UpdateNews = ({
     try {
       const formData = new FormData();
       formData.append("caseId", newsId.toString());
-      formData.append("company", company);
+      formData.append("title", title);
       formData.append("desc", desc);
-      formData.append("city", city);
-      formData.append("country", country);
-      formData.append("contact", contact);
-      formData.append("website", website);
 
       formData.append("createdAt", createdAt);
 
       if (image) formData.append("image", image);
 
-      await updateNews(
-        newsId,
-        company,
-        desc,
-        city,
-        country,
-        contact,
-        image || undefined,
-        createdAt,
-        website
-      );
+      await updateNews(newsId, title, desc, image || undefined);
 
       onCaseUpdated();
       setShowToast(true);
@@ -141,39 +112,23 @@ const UpdateNews = ({
         <div className="flex flex-col lg:flex-row gap-5 lg:gap-14 w-full">
           <div className="flex flex-col gap-5 items-center">
             <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("company_name")}</legend>
+              <legend className="fieldset-legend">{t("title")}</legend>
               <input
-                name="company"
+                name="title"
                 type="text"
                 className="input input-bordered input-md"
-                placeholder={t("write_company_name")}
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
+                placeholder={t("write_title")}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 required
               />
-              {errors.company && (
+              {errors.title && (
                 <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.company}
+                  {errors.title}
                 </span>
               )}
             </fieldset>
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("contact_person")}</legend>
-              <input
-                name="contact"
-                type="text"
-                className="input input-bordered input-md"
-                placeholder={t("write_contact_person")}
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                required
-              />
-              {errors.contact && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.contact}
-                </span>
-              )}
-            </fieldset>
+
             <fieldset className="flex flex-col gap-2 relative w-full fieldset">
               <legend className="fieldset-legend">{t("description")}</legend>
               <textarea
@@ -215,56 +170,6 @@ const UpdateNews = ({
             </fieldset>
           </div>
           <div className="flex flex-col gap-3 relative">
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("city")}</legend>
-              <input
-                name="city"
-                type="text"
-                className="input input-bordered input-md"
-                placeholder={t("enter_city_area")}
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-              />
-              {errors.city && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.city}
-                </span>
-              )}
-            </fieldset>
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("country")}</legend>
-              <input
-                name="country"
-                type="text"
-                className="input input-bordered input-md"
-                placeholder={t("write_country")}
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                required
-              />
-              {errors.country && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.country}
-                </span>
-              )}
-            </fieldset>
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("website_url")}</legend>
-              <input
-                name="website"
-                type="url"
-                className="input input-bordered input-md"
-                placeholder={t("write_website_url")}
-                value={website}
-                onChange={(e) => setWebsite(e.target.value)}
-              />
-              {errors.website && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.website}
-                </span>
-              )}
-            </fieldset>
             <fieldset className="flex flex-col gap-2 relative w-full fieldset">
               <legend className="fieldset-legend">{t("image_update")}</legend>
               <input

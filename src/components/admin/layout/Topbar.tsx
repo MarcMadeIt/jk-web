@@ -28,7 +28,7 @@ const Topbar = () => {
   const currentTitle = pageTitles[pathname] || t("unknown_page");
 
   return (
-    <div className="navbar bg-base-200 shadow-sm w-full rounded-md pl-5 h-14 flex items-center justify-between">
+    <div className="navbar bg-base-100 shadow-sm w-full rounded-md pl-5 h-14 flex items-center justify-between">
       <div className="flex-1">
         <a className="text-lg md:text-xl font-semibold tracking-wide">
           {currentTitle}

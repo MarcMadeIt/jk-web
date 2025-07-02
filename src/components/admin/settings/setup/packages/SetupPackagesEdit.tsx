@@ -1,92 +1,159 @@
 "use client";
 
-import React, { useState } from "react";
-import { updatePackage } from "@/lib/server/actions";
-import { FaAngleLeft } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import TiptapEditor from "@/components/elements/TipTapEditor";
+import { getPackageById, updatePackage } from "@/lib/server/actions";
+import { FaAngleLeft } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 
-interface SetupPackagesEditProps {
-  packageData: {
-    id: string;
-    label: string;
-    price_eur: number;
-    price_dkk: number;
-  };
-  onSave: () => void;
-  onBack: () => void;
+interface PackageData {
+  title: string;
+  desc: string;
+  price: number;
 }
 
-const SetupPackagesEdit: React.FC<SetupPackagesEditProps> = ({
-  packageData,
+interface SetupPackagesEditProps {
+  packageId: string;
+  onSave: (packageData: PackageData) => void;
+  onBack: () => void;
+  onBackToDetails?: () => void;
+}
+
+const SetupPackagesEdit = ({
+  packageId,
   onSave,
   onBack,
-}) => {
+  onBackToDetails,
+}: SetupPackagesEditProps) => {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
-  const [label, setLabel] = useState(packageData.label);
-  const [priceEur, setPriceEur] = useState<number>(packageData.price_eur);
-  const [priceDkk, setPriceDkk] = useState<number>(packageData.price_dkk);
+  const [packageData, setPackageData] = useState<PackageData>({
+    title: "",
+    desc: "",
+    price: 0,
+  });
 
-  const handleSave = async () => {
-    try {
-      await updatePackage(packageData.id, {
-        label,
-        price_eur: priceEur,
-        price_dkk: priceDkk,
+  const [errors, setErrors] = useState({
+    title: "",
+    desc: "",
+    price: "",
+  });
+
+  useEffect(() => {
+    const loadPackage = async () => {
+      try {
+        const data = await getPackageById(packageId);
+        setPackageData(data);
+      } catch (err) {
+        console.error("Failed to load package data", err);
+      }
+    };
+    loadPackage();
+  }, [packageId]);
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { title, desc, price } = packageData;
+
+    if (!title || !desc || price <= 0) {
+      setErrors({
+        title: !title ? t("updatePackage.errors.title") : "",
+        desc: !desc ? t("updatePackage.errors.desc") : "",
+        price: price <= 0 ? t("updatePackage.errors.price") : "",
       });
-      onSave();
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await updatePackage(packageId, { title, desc, price });
+      onSave(packageData);
+      onBack();
     } catch (error) {
       console.error("Failed to update package:", error);
+      alert("Could not update package.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="p-5 space-y-4">
-      <button onClick={onBack} className="btn btn-ghost">
-        <FaAngleLeft />
-        {t("setup.back")}
-      </button>
+    <div className="flex flex-col gap-10 w-full">
+      <div>
+        <button onClick={onBackToDetails || onBack} className="btn btn-ghost">
+          <FaAngleLeft /> {t("back")}
+        </button>
+      </div>
 
-      <fieldset className="fieldset">
-        <legend className="fieldset-legend">{t("setup.label")}</legend>
-        <input
-          type="text"
-          className="input w-full max-w-xs"
-          value={label}
-          onChange={(e) => setLabel(e.target.value)}
-          aria-label={t("setup.editLabel")}
-        />
-      </fieldset>
+      <form onSubmit={handleSave} className="flex flex-col gap-5 w-full">
+        {/* Title */}
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">
+            {t("updatePackage.title")}
+          </legend>
+          <input
+            type="text"
+            className="input input-bordered input-md"
+            placeholder={t("updatePackage.placeholders.title")}
+            value={packageData.title}
+            onChange={(e) =>
+              setPackageData({ ...packageData, title: e.target.value })
+            }
+          />
+          {errors.title && (
+            <span className="text-xs text-red-500">{errors.title}</span>
+          )}
+        </fieldset>
 
-      <fieldset className="fieldset">
-        <legend className="fieldset-legend">{t("setup.priceEur")}</legend>
-        <input
-          type="number"
-          className="input w-full max-w-xs"
-          value={priceEur}
-          onChange={(e) => setPriceEur(Number(e.target.value))}
-          aria-label={t("setup.editPriceEur")}
-        />
-      </fieldset>
+        {/* Price */}
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">
+            {t("updatePackage.price")}
+          </legend>
+          <input
+            type="number"
+            className="input input-bordered input-md"
+            placeholder={t("updatePackage.placeholders.price")}
+            value={packageData.price}
+            onChange={(e) =>
+              setPackageData({
+                ...packageData,
+                price: parseFloat(e.target.value) || 0,
+              })
+            }
+          />
+          {errors.price && (
+            <span className="text-xs text-red-500">{errors.price}</span>
+          )}
+        </fieldset>
 
-      <fieldset className="fieldset">
-        <legend className="fieldset-legend">{t("setup.priceDkk")}</legend>
-        <input
-          type="number"
-          className="input w-full max-w-xs"
-          value={priceDkk}
-          onChange={(e) => setPriceDkk(Number(e.target.value))}
-          aria-label={t("setup.editPriceDkk")}
-        />
-      </fieldset>
+        {/* Description */}
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">{t("updatePackage.desc")}</legend>
+          <TiptapEditor
+            value={packageData.desc}
+            onChange={(value) =>
+              setPackageData({ ...packageData, desc: value })
+            }
+          />
+          {errors.desc && (
+            <span className="text-xs text-red-500">{errors.desc}</span>
+          )}
+        </fieldset>
 
-      <button
-        className="btn btn-primary"
-        onClick={handleSave}
-        aria-label={t("setup.save")}
-      >
-        {t("setup.save")}
-      </button>
+        <div>
+          <button
+            type="submit"
+            className="btn btn-primary mt-2"
+            disabled={loading}
+          >
+            {loading ? t("updatePackage.saving") : t("updatePackage.save")}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

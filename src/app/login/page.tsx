@@ -1,6 +1,7 @@
 "use client";
 
 import { login } from "@/lib/server/actions";
+import Image from "next/image";
 import React, { useState } from "react";
 import { FaEnvelope, FaKey } from "react-icons/fa6";
 
@@ -54,7 +55,7 @@ const LoginPage = () => {
       >
         <div className="flex flex-col items-center gap-2">
           <span className="font-bold text-lg">Admin</span>
-          <span className="text-sm">Junker's Køreskole</span>
+          <span className="text-base font-semibold">Junker's Køreskole</span>
         </div>
         <div className="flex flex-col gap-2 relative">
           <label
@@ -112,10 +113,13 @@ const LoginPage = () => {
           {loading ? "Logger ind..." : "Login"}
         </button>
       </form>
-      <span className="text-zinc-400 text-[11px] items-center justify-center p-4 absolute bottom-0">
+      <a
+        href="https://arzonic.com"
+        className="text-zinc-400 text-[11px] items-center justify-center p-4 absolute bottom-0"
+      >
         © {new Date().getFullYear()} Powered by{" "}
         <span className="font-semibold">Arzonic</span>
-      </span>
+      </a>
     </div>
   );
 };

@@ -282,21 +282,13 @@ export async function updateUser(
 // ─────────────────────────────────────────────────────────────────────────────
 
 export async function createNews({
-  company,
+  title,
   desc,
-  city,
-  country,
-  contact,
   image,
-  website,
 }: {
-  company: string;
+  title: string;
   desc: string;
-  city: string;
-  country: string;
-  contact: string;
   image?: File;
-  website?: string;
 }): Promise<void> {
   const supabase = await createServerClientInstance();
 
@@ -336,27 +328,6 @@ export async function createNews({
       desc_translated = second.text;
     }
 
-    const countryParams = new URLSearchParams({
-      auth_key: apiKey,
-      text: country,
-      target_lang: "EN",
-    });
-    const countryRes = await fetch(endpoint, {
-      method: "POST",
-      body: countryParams,
-    });
-    if (!countryRes.ok) {
-      throw new Error(
-        `DeepL country error ${countryRes.status}: ${await countryRes.text()}`
-      );
-    }
-    const {
-      translations: [countryFirst],
-    } = (await countryRes.json()) as {
-      translations: { text: string }[];
-    };
-    const country_translated = countryFirst.text;
-
     let imageUrl: string | null = null;
     if (image) {
       const uploadFile = async (file: File) => {
@@ -386,17 +357,12 @@ export async function createNews({
 
     const { error } = await supabase.from("news").insert([
       {
-        company,
+        title,
         desc,
         desc_translated,
         source_lang: sourceLang,
-        city,
-        country,
-        country_translated,
-        contact,
         image: imageUrl,
         creator_id: ud.user.id,
-        website,
       },
     ]);
     if (error) throw error;
@@ -408,14 +374,10 @@ export async function createNews({
 
 export async function updateNews(
   id: number,
-  company: string,
+  title: string,
   desc: string,
-  city: string,
-  country: string,
-  contact: string,
   image: File | null,
-  created_at?: string,
-  website?: string
+  created_at?: string
 ): Promise<void> {
   const supabase = await createServerClientInstance();
 
@@ -455,27 +417,6 @@ export async function updateNews(
       desc_translated = second.text;
     }
 
-    const countryParams = new URLSearchParams({
-      auth_key: apiKey,
-      text: country,
-      target_lang: "EN",
-    });
-    const countryRes = await fetch(endpoint, {
-      method: "POST",
-      body: countryParams,
-    });
-    if (!countryRes.ok) {
-      throw new Error(
-        `DeepL country error ${countryRes.status}: ${await countryRes.text()}`
-      );
-    }
-    const {
-      translations: [countryFirst],
-    } = (await countryRes.json()) as {
-      translations: { text: string }[];
-    };
-    const country_translated = countryFirst.text;
-
     let imageUrl: string | null = null;
     if (image) {
       const uploadFile = async (file: File) => {
@@ -483,17 +424,17 @@ export async function updateNews(
         const name = `${Math.random().toString(36).slice(2)}.${ext}`;
         const { data: ud, error: ue } = await supabase.auth.getUser();
         if (ue || !ud?.user) throw new Error("Not authenticated");
-        const path = `case-images/${ud.user.id}/${name}`;
+        const path = `news-images/${ud.user.id}/${name}`;
         const buf = await sharp(Buffer.from(await file.arrayBuffer()))
           .rotate()
           .resize({ width: 1024, height: 768, fit: "cover" })
           .webp({ quality: 65 })
           .toBuffer();
-        await supabase.storage.from("case-images").upload(path, buf, {
+        await supabase.storage.from("news-images").upload(path, buf, {
           contentType: "image/webp",
         });
         const { data } = await supabase.storage
-          .from("case-images")
+          .from("news-images")
           .getPublicUrl(path);
         return data.publicUrl!;
       };
@@ -511,30 +452,20 @@ export async function updateNews(
     if (ue || !ud?.user) throw new Error("Not authenticated");
 
     const payload: {
-      company: string;
+      title: string;
       desc: string;
       desc_translated: string;
       source_lang: string;
-      city: string;
-      country: string;
-      country_translated: string;
-      contact: string;
       image: string | null;
       creator_id: string;
       created_at?: string;
-      website?: string;
     } = {
-      company,
+      title,
       desc,
       desc_translated,
       source_lang: sourceLang,
-      city,
-      country,
-      country_translated,
-      contact,
       image: imageUrl,
       creator_id: ud.user.id,
-      website,
       ...(created_at ? { created_at } : {}),
     };
     if (created_at) payload.created_at = created_at;
@@ -542,7 +473,7 @@ export async function updateNews(
     const { error } = await supabase.from("news").update(payload).eq("id", id);
     if (error) throw error;
   } catch (err) {
-    console.error("updateCase error:", err);
+    console.error("updateNews error:", err);
     throw err;
   }
 }
@@ -615,12 +546,7 @@ async function detectAndTranslate(text: string) {
   return { sourceLang, translated };
 }
 
-export async function createReview(
-  desc: string,
-  rate: number,
-  company: string,
-  contact: string
-): Promise<void> {
+export async function createReview(desc: string, rate: number): Promise<void> {
   const supabase = await createServerClientInstance();
   const { sourceLang, translated } = await detectAndTranslate(desc);
   const { data: u, error: ue } = await supabase.auth.getUser();
@@ -633,8 +559,6 @@ export async function createReview(
       desc_translated: translated,
       source_lang: sourceLang,
       rate,
-      company,
-      contact,
     },
   ]);
 
@@ -1112,7 +1036,7 @@ export async function getJobById(jobId: string) {
 }
 
 export async function getJobBySlug(slug: string) {
-  const supabase = await createServerClientInstance(); // ✅
+  const supabase = await createServerClientInstance();
 
   const { data, error } = await supabase
     .from("jobs")
@@ -1196,7 +1120,7 @@ export async function deleteApplication(applicationId: string): Promise<void> {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PACKAGES AND SERVICES
+// PACKAGES AND FEATURES
 // ─────────────────────────────────────────────────────────────────────────────
 
 export async function getPackages() {
@@ -1206,7 +1130,7 @@ export async function getPackages() {
     const { data, error } = await supabase
       .from("packages")
       .select("*")
-      .order("price_eur", { ascending: true });
+      .order("title", { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch packs: ${error.message}`);
@@ -1219,32 +1143,60 @@ export async function getPackages() {
   }
 }
 
-export async function getServices() {
+export async function getPackageById(packageId: string) {
   const supabase = await createServerClientInstance();
 
   try {
     const { data, error } = await supabase
-      .from("services")
+      .from("packages") // Ændret fra "jobs" til "packages"
       .select("*")
-      .order("label", { ascending: true });
+      .eq("id", packageId)
+      .single();
 
     if (error) {
-      throw new Error(`Failed to fetch services: ${error.message}`);
+      throw new Error(`Failed to fetch package by ID: ${error.message}`);
     }
 
-    return { services: data || [] };
+    return data;
   } catch (err) {
-    console.error("Unexpected error during fetching services:", err);
+    console.error("Unexpected error during fetching package by ID:", err);
     throw err;
   }
+}
+
+export async function getFeaturesByPackageId(packageId: string) {
+  const supabase = await createServerClientInstance();
+
+  const { data, error } = await supabase
+    .from("package_features")
+    .select(
+      `
+      *,
+      features(*)
+    `
+    )
+    .eq("package_id", packageId);
+
+  if (error) {
+    throw new Error("Failed to fetch features: " + error.message);
+  }
+
+  return data.map((item) => {
+    const feature = item.features;
+    return {
+      ...item,
+      ...feature,
+      price: item.override_price ?? feature.price,
+    };
+  });
 }
 
 export async function updatePackage(
   packageId: string,
   data: {
-    label?: string;
-    price_eur?: number;
-    price_dkk?: number;
+    title?: string;
+    price?: number;
+    desc?: string;
   }
 ): Promise<void> {
   const supabase = await createServerClientInstance();
@@ -1260,6 +1212,123 @@ export async function updatePackage(
     }
   } catch (err) {
     console.error("Error in updatePackage:", err);
+    throw err;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TEACHERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function getTeachers() {
+  const supabase = await createServerClientInstance();
+
+  try {
+    const { data, error } = await supabase
+      .from("teachers")
+      .select("*")
+      .order("priority");
+    if (error) {
+      throw new Error(`Failed to fetch teachers: ${error.message}`);
+    }
+
+    return data || [];
+  } catch (err) {
+    console.error("Unexpected error during fetching teachers:", err);
+    throw err;
+  }
+}
+
+export async function fetchTeacherById(teacherId: string) {
+  const supabase = await createServerClientInstance();
+  try {
+    const { data, error } = await supabase
+      .from("teachers")
+      .select("*")
+      .eq("id", teacherId)
+      .single();
+    if (error) {
+      throw new Error(`Failed to fetch teacher: ${error.message}`);
+    }
+    return data;
+  } catch (err) {
+    console.error("Unexpected error during fetching teacher by id:", err);
+    throw err;
+  }
+}
+
+export async function createTeacher({
+  name,
+  desc,
+  desc_eng,
+  since,
+  image,
+}: {
+  name: string;
+  desc: string;
+  desc_eng: string;
+  since: string;
+  image?: File;
+}): Promise<void> {
+  const supabase = await createServerClientInstance();
+
+  try {
+    let imageUrl: string | null = null;
+
+    if (image) {
+      const safeName = name
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+
+      const timestamp = Date.now();
+      const filename = `${safeName}-${timestamp}.webp`;
+
+      const buffer = await sharp(Buffer.from(await image.arrayBuffer()))
+        .rotate()
+        .resize({ width: 800, height: 800, fit: "cover" })
+        .webp({ quality: 70 })
+        .toBuffer();
+
+      const { error: uploadError } = await supabase.storage
+        .from("teacher-images")
+        .upload(filename, buffer, {
+          contentType: "image/webp",
+          upsert: true,
+        });
+
+      if (uploadError) {
+        console.error("Fejl ved upload til Supabase Storage:", uploadError);
+        throw uploadError;
+      }
+
+      const { data } = supabase.storage
+        .from("teacher-images")
+        .getPublicUrl(filename);
+
+      if (!data?.publicUrl) {
+        throw new Error("Kunne ikke hente public URL fra Supabase.");
+      }
+
+      imageUrl = data.publicUrl;
+    }
+
+    const { error: insertError } = await supabase.from("teachers").insert([
+      {
+        name,
+        desc,
+        desc_eng,
+        since,
+        image: imageUrl,
+      },
+    ]);
+
+    if (insertError) {
+      console.error("Fejl ved insert i teachers:", insertError);
+      throw insertError;
+    }
+  } catch (err) {
+    console.error("createTeacher error:", err);
     throw err;
   }
 }

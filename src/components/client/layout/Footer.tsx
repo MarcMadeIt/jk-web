@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FaFacebook, FaHashtag, FaInstagram } from "react-icons/fa6";
 import ConsentModal from "../modal/ConsentModal";
 import TermsModal from "../modal/TermsModal";
+import Image from "next/image";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -12,46 +13,15 @@ const Footer = () => {
     <div>
       <footer className="footer sm:footer-horizontal bg-base-100 text-base-content p-10 border-base-300 border-t">
         <nav>
-          <h5 className="footer-title">{t("Footer.solutions")}</h5>
-          <Link
-            href="/solutions/custom-websites"
-            className="link link-hover"
-            aria-label={t(
-              "aria.footer.linkToCustomWebsites",
-              "Go to custom websites"
-            )}
-          >
-            {t("Header.dropdown.customWebsites")}
+          <h5 className="footer-title">Afdelinger</h5>
+          <Link href="/afdelinger/ribe" className="link link-hover">
+            Ribe
           </Link>
-          <Link
-            href="/solutions/web-applications"
-            className="link link-hover"
-            aria-label={t(
-              "aria.footer.linkToWebApplications",
-              "Go to web applications"
-            )}
-          >
-            {t("Header.dropdown.webApplications")}
+          <Link href="/afdelinger/billund" className="link link-hover">
+            Billund
           </Link>
-          <Link
-            href="/solutions/3d-visualization"
-            className="link link-hover"
-            aria-label={t(
-              "aria.footer.linkTo3DVisualization",
-              "Go to 3D visualization"
-            )}
-          >
-            {t("Header.dropdown.visualization")}
-          </Link>
-          <Link
-            href="/solutions/design-animation"
-            className="link link-hover"
-            aria-label={t(
-              "aria.footer.linkToDesignAnimation",
-              "Go to design and animation"
-            )}
-          >
-            {t("Header.dropdown.designAnimation")}
+          <Link href="/afdelinger/grindsted" className="link link-hover">
+            Grindsted
           </Link>
         </nav>
         <nav>
@@ -61,21 +31,29 @@ const Footer = () => {
             className="link link-hover"
             aria-label={t("aria.footer.linkToAbout", "Go to about us")}
           >
-            {t("about")}
+            Priser
           </Link>
           <Link
-            href="/contact"
+            href="/tilmelding"
+            className="link link-hover"
+            aria-label={t("aria.footer.linkToAbout", "Go to about us")}
+          >
+            Tilmelding
+          </Link>
+
+          <Link
+            href="/"
             className="link link-hover"
             aria-label={t("aria.footer.linkToContact", "Go to contact")}
           >
-            {t("contact")}
+            Information
           </Link>
           <Link
-            href="/jobs"
+            href="/"
             className="link link-hover"
             aria-label={t("aria.footer.linkToJobs", "Go to jobs")}
           >
-            {t("Footer.jobs", "Jobs")}
+            Kørelærerne
           </Link>
         </nav>
         <nav>
@@ -86,11 +64,17 @@ const Footer = () => {
       </footer>
       <footer className="footer bg-base-100 text-base-content px-10 py-4">
         <aside className="flex items-center">
-          <FaHashtag className="text-3xl -rotate-12 text-secondary" />
+          <Image
+            src="/jk-flag.png"
+            alt=""
+            width={100}
+            height={100}
+            className="h-auto w-12"
+          />
           <p>
-            {t("Footer.brandName", "Arzonic Agency")}
+            <span className="font-semibold">{t("Footer.brandName")}</span>
             <br />
-            {t("Footer.reliableTech", "Providing reliable tech since 2024")}
+            {t("Footer.sloganSince")}
           </p>
         </aside>
         <nav className="md:place-self-center md:justify-self-end mb-5">
@@ -99,7 +83,7 @@ const Footer = () => {
               href="https://www.facebook.com/profile.php?id=61575249251500"
               target="_blank"
               rel="noopener noreferrer"
-              className="md:hover:text-secondary md:transition-colors md:duration-300"
+              className="md:hover:text-primary md:transition-colors md:duration-300"
               aria-label={t("aria.footer.linkToFacebook", "Go to Facebook")}
             >
               <FaFacebook size={30} />
@@ -109,7 +93,7 @@ const Footer = () => {
               href="https://www.instagram.com/arzonic.agency/"
               target="_blank"
               rel="noopener noreferrer"
-              className="md:hover:text-secondary md:transition-colors md:duration-300"
+              className="md:hover:text-primary md:transition-colors md:duration-300"
               aria-label={t("aria.footer.linkToInstagram", "Go to Instagram")}
             >
               <FaInstagram size={33} />

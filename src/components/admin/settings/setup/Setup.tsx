@@ -1,90 +1,103 @@
 "use client";
 
 import React, { useState } from "react";
-import SetupPackages from "./packages/SetupPackages";
-import SetupPackagesEdit from "./packages/SetupPackagesEdit";
-import SetupJobs from "./Jobs/SetupJobs";
-import SetupJobsCreate from "./Jobs/SetupJobsCreate";
-import SetupJobsDetails from "./Jobs/SetupJobsDetails";
 import { useTranslation } from "react-i18next";
+import SetupPackagesDetails from "./packages/SetupPackagesDetails";
+import SetupPackages from "./packages/SetupPackages";
+import SetupTeachers from "./teachers/SetupTeachers";
+import SetupTeachersDetails from "./teachers/SetupTeachersDetails";
+import SetupTeachersCreate from "./teachers/SetupTeachersCreate";
 
 const Setup = () => {
   const { t } = useTranslation();
 
-  const [isEditingPackage, setIsEditingPackage] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
-
-  const [isCreatingJob, setIsCreatingJob] = useState(false);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [isViewingJobDetails, setIsViewingJobDetails] = useState(false);
+  const [isViewingPackageDetails, setIsViewingPackageDetails] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
-  const handlePackageEditToggle = (pkg = null) => {
+  // Teacher state
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [isViewingTeacherDetails, setIsViewingTeacherDetails] = useState(false);
+  const [showTeacherToast, setShowTeacherToast] = useState(false);
+  const [isCreatingTeacher, setIsCreatingTeacher] = useState(false);
+
+  const handlePackageDetailsToggle = (pkg = null) => {
     setSelectedPackage(pkg);
-    setIsEditingPackage((prev) => !prev);
-  };
-
-  const handleJobCreateToggle = () => {
-    setIsCreatingJob((prev) => !prev);
-    setSelectedJob(null);
-  };
-
-  const handleJobEditToggle = (job) => {
-    setSelectedJob(job);
-    setIsViewingJobDetails(true);
-    setIsCreatingJob(false);
-  };
-
-  const handleSave = () => {
-    setIsEditingPackage(false);
-    setSelectedPackage(null);
-    setIsCreatingJob(false);
-    setSelectedJob(null);
-    setIsViewingJobDetails(false);
+    setIsViewingPackageDetails(!!pkg);
   };
 
   const handleBackToMain = () => {
-    setIsCreatingJob(false);
-    setIsViewingJobDetails(false);
+    setIsViewingPackageDetails(false);
+    setIsViewingTeacherDetails(false);
   };
 
-  const handleJobDelete = () => {
-    setIsViewingJobDetails(false);
+  const handlePackageDelete = () => {
+    setIsViewingPackageDetails(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
 
+  // Teacher handlers
+  const handleTeacherEdit = (teacher) => {
+    setSelectedTeacher(teacher);
+    setIsViewingTeacherDetails(true);
+  };
+
+  const handleTeacherCreate = () => {
+    setSelectedTeacher(null);
+    setIsViewingTeacherDetails(false);
+    setIsCreatingTeacher(true);
+  };
+
+  const handleTeacherCreateBack = () => {
+    setIsCreatingTeacher(false);
+  };
+
+  const handleTeacherCreateSave = () => {
+    setIsCreatingTeacher(false);
+    // evt. vis toast eller reload liste
+  };
+
+  const handleTeacherDelete = () => {
+    setIsViewingTeacherDetails(false);
+    setShowTeacherToast(true);
+    setTimeout(() => setShowTeacherToast(false), 3000);
+  };
+
   return (
     <div className="">
-      {isEditingPackage ? (
-        <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
-          <SetupPackagesEdit
-            packageData={selectedPackage}
-            onSave={handleSave}
-            onBack={() => handlePackageEditToggle(null)}
+      {isViewingPackageDetails ? (
+        <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
+          <SetupPackagesDetails
+            packageId={selectedPackage?.id}
+            onBack={handleBackToMain}
+            onDelete={handlePackageDelete}
           />
         </div>
-      ) : isCreatingJob ? (
-        <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
-          <SetupJobsCreate onSave={handleSave} onBack={handleBackToMain} />
-        </div>
-      ) : isViewingJobDetails ? (
-        <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
-          <SetupJobsDetails
-            jobId={selectedJob?.id}
+      ) : isViewingTeacherDetails ? (
+        <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
+          <SetupTeachersDetails
+            teacherId={selectedTeacher?.id}
             onBack={handleBackToMain}
-            onDelete={handleJobDelete}
+            onDelete={handleTeacherDelete}
+          />
+        </div>
+      ) : isCreatingTeacher ? (
+        <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
+          <SetupTeachersCreate
+            onSave={handleTeacherCreateSave}
+            onBack={handleTeacherCreateBack}
           />
         </div>
       ) : (
         <div className="flex flex-col gap-5">
-          <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
-            <SetupPackages onEdit={handlePackageEditToggle} />
+          <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
+            <SetupPackages onDetails={handlePackageDetailsToggle} />
           </div>
-          <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
-            <SetupJobs
-              onEdit={(job) => handleJobEditToggle(job)}
-              onCreate={handleJobCreateToggle}
+          <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
+            <SetupTeachers
+              onDetails={handleTeacherEdit}
+              onCreate={handleTeacherCreate}
             />
           </div>
         </div>
@@ -93,7 +106,16 @@ const Setup = () => {
         <div className="toast bottom-20 md:bottom-0 toast-end">
           <div className="alert alert-success text-neutral-content">
             <span className="text-base md:text-lg">
-              {t("setup.deleted_job")}
+              {t("setup.deleted_package")}
+            </span>
+          </div>
+        </div>
+      )}
+      {showTeacherToast && (
+        <div className="toast bottom-20 md:bottom-0 toast-end">
+          <div className="alert alert-success text-neutral-content">
+            <span className="text-base md:text-lg">
+              {t("setup.deleted_teacher")}
             </span>
           </div>
         </div>

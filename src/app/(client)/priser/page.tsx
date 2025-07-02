@@ -1,12 +1,12 @@
 import { Metadata } from "next";
-import PricingPage from "./PricingPage";
+import PricesPage from "./PricesPage";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Priser",
   description:
-    "We offer transparent pricing for our web development services. Choose from our packages or get a custom quote tailored to your needs.",
+    "Få et overblik over priserne for kørekort, trailer, traktor og generhvervelse hos Junker's Køreskole. Vi tilbyder konkurrencedygtige priser med fokus på kvalitet og tryghed.",
 };
 
 export default function Page() {
-  return <PricingPage />;
+  return <PricesPage />;
 }

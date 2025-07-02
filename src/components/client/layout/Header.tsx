@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebook, FaGripLines, FaInstagram, FaXmark } from "react-icons/fa6";
+import { FaBars, FaFacebook, FaInstagram, FaXmark } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Language from "./Language";
@@ -14,17 +14,23 @@ const Header = () => {
   const pathname = usePathname();
   const { t } = useTranslation();
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<
+    null | "prices" | "cities" | "information"
+  >(null);
 
   useEffect(() => {
-    setDropdownOpen(false);
+    setOpenDropdown(null);
   }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const dropdown = document.getElementById("solutions-dropdown");
-      if (dropdown && !dropdown.contains(event.target as Node)) {
-        setDropdownOpen(false);
+      const dropdowns = document.querySelectorAll(".dropdown-menu");
+      if (
+        !Array.from(dropdowns).some((dropdown) =>
+          dropdown.contains(event.target as Node)
+        )
+      ) {
+        setOpenDropdown(null);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -43,101 +49,157 @@ const Header = () => {
   };
 
   return (
-    <div className="navbar absolute top-0 inset-x-0 z-50 max-w-[1536px] mx-auto md:py-5 py-7 bg-base-100 md:bg-transparent">
-      <div className="flex-1">
+    <div className="navbar fixed top-0 inset-x-0 z-50 max-w-[1536px] mx-auto md:py-5 py-7 bg-base-100">
+      <div className="flex-1 cursor-pointer">
         <Link
           href="/"
           className="pl-4 flex items-center gap-2"
-          aria-label={t("aria.navigation.linkToHome")}
+          aria-label={t("header.brandName")}
         >
           <Image
-            src="/icon-192x192.png"
-            alt={t("Header.logoAlt")}
-            width={60}
-            height={60}
-            className="h-10 w-10 md:h-14 md:w-14 rounded-full"
+            src="/logo-jk.webp"
+            alt={t("header.logoAlt")}
+            width={200}
+            height={200}
+            className="h-auto w-48 md:h-auto md:w-52"
             priority
           />
-          <span className="font-bold text-2xl md:text-3xl tracking-wider">
-            {t("Header.brandName")}
-          </span>
         </Link>
       </div>
       <nav className="flex-none">
-        <ul className="menu hidden md:flex menu-horizontal text-lg font-bold gap-3 md:gap-5 items-center">
+        <ul className="menu hidden md:flex menu-horizontal text-lg font-semibold gap-3 md:gap-5 items-center">
           <li
-            className="relative"
-            id="solutions-dropdown"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
+            className="relative dropdown-menu"
+            onMouseEnter={() => setOpenDropdown("prices")}
+            onMouseLeave={() => setOpenDropdown(null)}
           >
-            <Link
-              href="/solutions"
-              aria-label={t("aria.navigation.linkToSolutions")}
-            >
-              {t("Header.solutions")}
+            <Link href="/priser" aria-label={t("header.prices")}>
+              {t("header.prices")}
             </Link>
             <AnimatePresence>
-              {dropdownOpen && (
+              {openDropdown === "prices" && (
                 <motion.ul
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-10 left-0 bg-base-100 shadow-xl w-52 px-2 py-3 z-30 flex flex-col items-start gap-3 rounded-xl"
+                  className="absolute top-10 -left-4 bg-base-100 shadow-xl w-52 px-2 py-3 z-30 flex flex-col items-start gap-3 rounded-lg menu"
                 >
                   <li className="w-full">
-                    <Link href="/solutions/custom-websites">
-                      {t("Header.dropdown.customWebsites")}
+                    <Link href="/priser/bil-korekort">
+                      {t("header.dropdown.prices.car")}
                     </Link>
                   </li>
                   <li className="w-full">
-                    <Link href="/solutions/web-applications">
-                      {t("Header.dropdown.webApplications")}
+                    <Link href="/priser/trailer-korekort">
+                      {t("header.dropdown.prices.trailer")}
                     </Link>
                   </li>
                   <li className="w-full">
-                    <Link href="/solutions/3d-visualization">
-                      {t("Header.dropdown.visualization")}
+                    <Link href="/priser/traktor-korekort">
+                      {t("header.dropdown.prices.tractor")}
                     </Link>
                   </li>
                   <li className="w-full">
-                    <Link href="/solutions/design-animation">
-                      {t("Header.dropdown.designAnimation")}
+                    <Link href="/priser/generhvervelse-korekort">
+                      {t("header.dropdown.prices.reacquisition")}
                     </Link>
                   </li>
                 </motion.ul>
               )}
             </AnimatePresence>
           </li>
-          <li>
-            <Link href="/cases" aria-label={t("aria.navigation.linkToCases")}>
-              {t("Header.cases")}
+
+          <li
+            className="relative dropdown-menu"
+            onMouseEnter={() => setOpenDropdown("information")}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
+            <Link href="/information" aria-label={t("header.information")}>
+              {t("header.information")}
             </Link>
+            <AnimatePresence>
+              {openDropdown === "information" && (
+                <motion.ul
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-10 -left-4 bg-base-100 shadow-xl w-52 px-2 py-3 z-30 flex flex-col items-start gap-3 rounded-lg menu"
+                >
+                  <li className="w-full">
+                    <Link href="/kontakt">
+                      {t("header.dropdown.information.contact")}
+                    </Link>
+                  </li>
+                  <li className="w-full">
+                    <Link href="/korelaererne">
+                      {t("header.dropdown.information.teachers")}
+                    </Link>
+                  </li>
+                  <li className="w-full">
+                    <Link href="/information/about">
+                      {t("header.dropdown.information.about")}
+                    </Link>
+                  </li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
           </li>
+
+          <li
+            className="relative dropdown-menu"
+            onMouseEnter={() => setOpenDropdown("cities")}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
+            <Link href="/afdelinger" aria-label={t("header.departments")}>
+              {t("header.departments")}
+            </Link>
+            <AnimatePresence>
+              {openDropdown === "cities" && (
+                <motion.ul
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-10 -left-4 bg-base-100 shadow-xl w-52 px-2 py-3 z-30 flex flex-col items-start gap-3 rounded-lg menu"
+                >
+                  <li className="w-full">
+                    <Link href="/tilmelding/ribe">
+                      {t("header.dropdown.city.ribe")}
+                    </Link>
+                  </li>
+                  <li className="w-full">
+                    <Link href="/tilmelding/billund">
+                      {t("header.dropdown.city.billund")}
+                    </Link>
+                  </li>
+                  <li className="w-full">
+                    <Link href="/tilmelding/grindsted">
+                      {t("header.dropdown.city.grindsted")}
+                    </Link>
+                  </li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </li>
+
           <li>
             <Link
-              href="/pricing"
-              aria-label={t("aria.navigation.linkToContact")}
-            >
-              {t("Header.pricing")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/get-started"
+              href="/tilmelding"
               className="btn btn-primary text-base"
-              aria-label={t("aria.navigation.getStarted")}
+              aria-label={t("header.registration")}
             >
-              {t("Header.getStarted")}
+              {t("header.registration")}
             </Link>
           </li>
+
           <li>
             <Language />
           </li>
         </ul>
 
-        {/* Mobile drawer */}
+        {/* Mobile Drawer */}
         <div className="drawer drawer-end flex md:hidden items-center">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
@@ -145,7 +207,7 @@ const Header = () => {
               htmlFor="my-drawer-4"
               className="drawer-button btn btn-ghost"
             >
-              <FaGripLines size={30} />
+              <FaBars size={30} />
             </label>
           </div>
           <div className="drawer-side">
@@ -162,53 +224,40 @@ const Header = () => {
               </li>
               <li className="text-xl font-semibold">
                 <Link
-                  href="/solutions"
+                  href="/priser"
                   onClick={handleCloseDrawer}
-                  aria-label={t("aria.navigation.linkToSolutions")}
+                  aria-label={t("header.prices")}
                 >
-                  {t("Header.solutions")}
+                  {t("header.prices")}
                 </Link>
               </li>
               <li className="text-xl font-semibold">
-                <Link
-                  href="/cases"
-                  onClick={handleCloseDrawer}
-                  aria-label={t("aria.navigation.linkToCases")}
-                >
-                  {t("Header.cases")}
+                <Link href="/information" onClick={handleCloseDrawer}>
+                  {t("header.information")}
                 </Link>
               </li>
               <li className="text-xl font-semibold">
-                <Link
-                  href="/pricing"
-                  onClick={handleCloseDrawer}
-                  aria-label={t("aria.navigation.linkToContact")}
-                >
-                  {t("Header.pricing")}
+                <Link href="/afdelinger" onClick={handleCloseDrawer}>
+                  {t("header.departments")}
                 </Link>
               </li>
               <li className="text-xl font-semibold">
-                <Link
-                  href="/contact"
-                  onClick={handleCloseDrawer}
-                  aria-label={t("aria.navigation.linkToContact")}
-                >
-                  {t("Header.contact")}
+                <Link href="/kontakt" onClick={handleCloseDrawer}>
+                  {t("header.dropdown.information.contact")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/get-started"
+                  href="/tilmelding"
                   className="btn btn-primary py-2 mt-4 text-neutral-content"
                   onClick={handleCloseDrawer}
-                  aria-label={t("aria.navigation.getStarted")}
                 >
-                  {t("Header.getStarted")}
+                  {t("header.registration")}
                 </Link>
               </li>
               <div className="flex flex-col items-center gap-6 flex-1 justify-center w-full">
                 <span className="text-lg font-bold">
-                  {t("Header.followUs")}
+                  {t("header.followUs")}
                 </span>
                 <div className="flex gap-6">
                   <Link
@@ -221,7 +270,7 @@ const Header = () => {
                       <FaFacebook className="text-3xl text-secondary" />
                     </div>
                     <span className="text-secondary font-bold">
-                      {t("Header.facebook")}
+                      {t("header.facebook")}
                     </span>
                   </Link>
                   <Link
@@ -234,7 +283,7 @@ const Header = () => {
                       <FaInstagram className="text-3xl text-secondary" />
                     </div>
                     <span className="text-secondary font-bold">
-                      {t("Header.instagram")}
+                      {t("header.instagram")}
                     </span>
                   </Link>
                 </div>

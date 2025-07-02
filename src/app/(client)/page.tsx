@@ -3,10 +3,10 @@ import HomePage from "./HomePage";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Arzonic – Danish Modern Web Agency ",
+    absolute: "Junker's Køreskole",
   },
   description:
-    "We specialize in building high-performance webapplications and immersive 3D experiences using modern",
+    "Tag kørekort i Ribe, Grindsted eller Billund hos Junker’s Køreskole. Vi tilbyder undervisning til bil, trailer, traktor og generhvervelse – med fokus på tryghed og høj beståelsesprocent",
 };
 
 export default function Page() {

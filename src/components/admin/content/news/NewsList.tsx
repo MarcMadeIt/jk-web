@@ -15,7 +15,7 @@ interface NewsListProps {
 
 interface NewsItem {
   id: number;
-  company: string;
+  title: string;
   desc: string;
   image: string | null;
 }
@@ -85,9 +85,9 @@ const NewsList = ({ view, page, setTotal, onEditCase }: NewsListProps) => {
     );
   }
 
-  if (newsItems.length === 0) {
+  if (!newsItems || newsItems.length === 0) {
     return (
-      <div className="flex justify-center items-center h-40">
+      <div className="flex justify-center items-center h-40 w-full">
         <p className="text-lg text-gray-500">{t("no_cases")}</p>
       </div>
     );
@@ -106,19 +106,19 @@ const NewsList = ({ view, page, setTotal, onEditCase }: NewsListProps) => {
           {newsItems.map((item) => (
             <div
               key={item.id}
-              className="card card-compact shadow-md bg-base-300 rounded-lg ring-base-300 ring-3 md:ring-5"
+              className="card card-compact shadow-md rounded-lg"
             >
               <figure className="relative w-full aspect-[4/3] overflow-hidden">
                 <Image
                   src={item.image || FALLBACK_IMAGE}
-                  alt={`Case study for ${item.company}`}
+                  alt={`Billede til opslaget: ${item.title}`}
                   fill
                   priority={page === 1}
                   className="object-cover"
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title text-lg">{item.company}</h2>
+                <h2 className="card-title text-lg">{item.title}</h2>
                 <p className="text-xs">{truncate(item.desc, 100)}</p>
                 <div className="card-actions justify-end mt-2">
                   <button
@@ -150,17 +150,17 @@ const NewsList = ({ view, page, setTotal, onEditCase }: NewsListProps) => {
                   <div className="relative w-12 h-10 rounded-md overflow-hidden">
                     <Image
                       src={item.image || FALLBACK_IMAGE}
-                      alt={`Case study for ${item.company}`}
+                      alt={`Case study for ${item.title}`}
                       fill
                       priority={page === 1}
                       className="object-cover"
                     />
                   </div>
                   <h3 className="font-semibold text-xs hidden sm:block">
-                    {item.company}
+                    {item.title}
                   </h3>
                   <h3 className="font-semibold text-xs block sm:hidden">
-                    {truncate(item.company, 20)}
+                    {truncate(item.title, 20)}
                   </h3>
                 </div>
                 <div className="flex gap-5 md:gap-2">

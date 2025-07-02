@@ -1,89 +1,41 @@
 "use client";
+import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import dynamic from "next/dynamic";
-import { useTranslation } from "react-i18next";
-import Link from "next/link";
-
-const ThreeAnimation = dynamic(() => import("../../animation/threeAnimation"), {
-  ssr: false,
-});
+import { FaPhone } from "react-icons/fa6";
 
 const Hero = () => {
-  const { t } = useTranslation();
-
   return (
-    <>
-      <div className="relative h-full w-full overflow-visible md:pl-4 lg:pl-8">
-        <div className="relative z-10 flex items-center justify-center md:justify-between h-full px-6 pt-20 lg:pt-0">
-          <div className="lg:w-[50%] flex flex-col gap-7">
-            <div className="flex gap-1 md:gap-3 items-center">
-              <div className="flex relative w-10 h-6 md:w-14 md:h-9">
-                <Image
-                  src="/danmark.png"
-                  alt={t("flags.danish", "Dansk flag")}
-                  width={40}
-                  height={24}
-                  className="w-10 h-7 md:w-14 md:h-9 object-contain"
-                  priority
-                />
-              </div>
-              <h1 className="text-2xl md:text-4xl">{t("Hero.title")}</h1>
-            </div>
-            <div className="max-w-xl flex flex-col gap-3">
-              <p className="text-sm sm:text-base">{t("Hero.description")} </p>
-              <span className="font-mono text-sm sm:text-base">
-                {t("Hero.noTemplates")}
-              </span>
-            </div>
-            <div className="flex gap-3 sm:items-center text-[11px] md:text-sm lg:text-base xl:text-lg  font-semibold tracking-wide">
-              <span
-                className="badge badge-secondary badge-soft badge-xs md:badge-md"
-                aria-label={t("aria.badges.customWebsites")}
-              >
-                {t("Hero.customWebsites")}
-              </span>
-
-              <span
-                className="badge badge-secondary badge-soft badge-xs md:badge-md"
-                aria-label={t("aria.badges.visualization")}
-              >
-                {t("Hero.visualization")}
-              </span>
-
-              <span
-                className="badge badge-secondary badge-soft badge-xs md:badge-md"
-                aria-label={t("aria.badges.webApplications")}
-              >
-                {t("Hero.webApplications")}
-              </span>
-            </div>
-            <div className="mt-5 flex items-center gap-3">
-              <Link
-                href="/solutions"
-                className="btn btn-soft"
-                aria-label={t("aria.navigation.seeMoreSolutions")}
-              >
-                {t("Hero.seeMore")}
-              </Link>
-              <Link
-                href="/get-started"
-                className="btn btn-primary md:hidden"
-                aria-label={t("aria.navigation.getStarted")}
-              >
-                {t("Header.getStarted")}
-              </Link>
-            </div>
-          </div>
-
-          <div className="lg:w-[50%] h-full lg:block hidden">
-            <div className="w-full h-full relative bg-transparent ">
-              <ThreeAnimation />
-            </div>
-          </div>
+    <div className="relative min-h-[300px] md:min-h-[500px] flex items-center justify-center py-2">
+      <div className="absolute inset-0 w-full h-full 2xl:rounded-b-lg overflow-hidden">
+        <Image
+          src="/hero.png"
+          alt="Hero baggrundsbillede"
+          fill
+          className="object-cover z-0"
+          priority
+          quality={60}
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-zinc-800/70 via-zinc-800/30 to-transparent" />
+      </div>
+      <div className="relative z-10 text-neutral-content text-center max-w-xl lg:max-w-2xl flex flex-col justify-center items-center mx-auto">
+        <h1 className="mb-5 text-2xl md:text-4xl lg:text-5xl font-bold filter drop-shadow-[0_0_4px_rgba(150,150,150,0.7)]">
+          Ribe, Billund & Grindsted
+        </h1>
+        <p className="mb-7 text-lg font-medium md:text-2xl lg:text-3xl filter drop-shadow-[0_0_4px_rgba(150,150,150,0.7)]">
+          Med dig hele vejen! <br />
+        </p>
+        <div className="flex gap-5">
+          <Link href="/tilmelding" className="btn btn-primary md:btn-lg">
+            Se holdstart
+          </Link>
+          <Link href="tel:+4522771246" className="btn md:btn-lg">
+            <FaPhone /> Kontakt os
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

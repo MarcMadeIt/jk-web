@@ -5,9 +5,10 @@ import { FaRegNewspaper, FaStar } from "react-icons/fa6";
 import Cases from "./news/News";
 import Reviews from "./reviews/Reviews";
 import { useTranslation } from "react-i18next";
+import News from "./news/News";
 
 const NavContent = () => {
-  const [activeTab, setActiveTab] = useState("cases");
+  const [activeTab, setActiveTab] = useState("news");
   const { t } = useTranslation();
   return (
     <div className="w-full">
@@ -18,21 +19,21 @@ const NavContent = () => {
         <button
           role="tab"
           className={`tab gap-2  ${
-            activeTab === "cases"
-              ? "tab-active bg-base-200 rounded-lg shadow-md"
+            activeTab === "news"
+              ? "tab-active bg-base-100 rounded-lg shadow-md"
               : ""
           }`}
-          onClick={() => setActiveTab("cases")}
+          onClick={() => setActiveTab("news")}
           aria-label={t("aria.navContent.casesTab")}
         >
           <FaRegNewspaper />
-          Cases
+          Nyheder
         </button>
         <button
           role="tab"
           className={`tab gap-2  ${
             activeTab === "reviews"
-              ? "tab-active bg-base-200 rounded-lg shadow-md"
+              ? "tab-active bg-base-100 rounded-lg shadow-md"
               : ""
           }`}
           onClick={() => setActiveTab("reviews")}
@@ -44,13 +45,13 @@ const NavContent = () => {
       </div>
 
       <div className="mt-3 md:mt-5">
-        {activeTab === "cases" && (
-          <div className="bg-base-200 rounded-lg shadow-md p-5 md:p-7">
-            <Cases />
+        {activeTab === "news" && (
+          <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
+            <News />
           </div>
         )}
         {activeTab === "reviews" && (
-          <div className="bg-base-200  rounded-lg shadow-md p-5 md:p-7">
+          <div className="bg-base-100 rounded-lg shadow-md p-5 md:p-7">
             <Reviews />
           </div>
         )}

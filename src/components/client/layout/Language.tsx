@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -23,7 +24,7 @@ const Language = () => {
           "Change language to Danish"
         )}
       >
-        <span>🇩🇰</span>
+        <Image src="/DK.png" alt="" width={37} height={37} />
       </div>
       <div
         className="swap-off flex items-center gap-2 text-3xl"
@@ -32,7 +33,7 @@ const Language = () => {
           "Change language to English"
         )}
       >
-        <span>🇬🇧</span>
+        <Image src="/UK.png" alt="" width={37} height={37} />
       </div>
     </label>
   );

@@ -4,22 +4,14 @@ import { useTranslation } from "react-i18next";
 
 const CreateNews = ({ onCaseCreated }: { onCaseCreated: () => void }) => {
   const { t } = useTranslation();
-  const [company, setCompany] = useState("");
+  const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
   const [image, setImage] = useState<File | null>(null);
-  const [contact, setContact] = useState("");
-  const [website, setWebsite] = useState("");
 
   const [errors, setErrors] = useState({
-    company: "",
+    title: "",
     desc: "",
-    city: "",
-    country: "",
     image: "",
-    contact: "",
-    website: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -27,15 +19,11 @@ const CreateNews = ({ onCaseCreated }: { onCaseCreated: () => void }) => {
     e.preventDefault();
     setLoading(true);
 
-    if (!company || !desc || !city || !country || !contact) {
+    if (!title || !desc) {
       setErrors({
-        company: !company ? t("company_name_required") : "",
+        title: !title ? t("title_required") : "",
         desc: !desc ? t("desc_required") : "",
-        city: !city ? t("city_required") : "",
-        country: !country ? t("country_required") : "",
         image: "",
-        contact: !contact ? t("contact_person_required") : "",
-        website: "",
       });
       setLoading(false);
       return;
@@ -43,22 +31,14 @@ const CreateNews = ({ onCaseCreated }: { onCaseCreated: () => void }) => {
 
     try {
       await createNews({
-        company,
+        title,
         desc,
-        city,
-        country,
-        contact,
         image,
-        website,
       });
 
-      setCompany("");
+      setTitle("");
       setDesc("");
-      setCity("");
-      setCountry("");
-      setContact("");
       setImage(null);
-      setWebsite("");
       onCaseCreated();
     } catch (error) {
       console.error(error);
@@ -89,39 +69,20 @@ const CreateNews = ({ onCaseCreated }: { onCaseCreated: () => void }) => {
         <div className="flex flex-col lg:flex-row gap-5 lg:gap-14 w-full">
           <div className="flex flex-col gap-5 items-center">
             <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("company_name")}</legend>
+              <legend className="fieldset-legend">{t("title")}</legend>
               <input
-                name="company"
+                name="title"
                 type="text"
                 className="input input-bordered input-md"
-                placeholder={t("write_company_name")}
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
+                placeholder={t("write_title")}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 required
-                aria-label={t("aria.createCase.companyName")}
+                aria-label={t("aria.createCase.title")}
               />
-              {errors.company && (
+              {errors.title && (
                 <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.company}
-                </span>
-              )}
-            </fieldset>
-
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("contact_person")}</legend>
-              <input
-                name="contact"
-                type="text"
-                className="input input-bordered input-md"
-                placeholder={t("write_contact_person")}
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                required
-                aria-label={t("aria.createCase.contactPerson")}
-              />
-              {errors.contact && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.contact}
+                  {errors.title}
                 </span>
               )}
             </fieldset>
@@ -151,60 +112,6 @@ const CreateNews = ({ onCaseCreated }: { onCaseCreated: () => void }) => {
             </fieldset>
           </div>
           <div className="flex flex-col gap-3 relative">
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("city")}</legend>
-              <input
-                name="city"
-                type="text"
-                className="input input-bordered input-md"
-                placeholder={t("write_city")}
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-                aria-label={t("aria.createCase.city")}
-              />
-              {errors.city && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.city}
-                </span>
-              )}
-            </fieldset>
-
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("country")}</legend>
-              <input
-                name="country"
-                type="text"
-                className="input input-bordered input-md"
-                placeholder={t("write_country")}
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                required
-                aria-label={t("aria.createCase.country")}
-              />
-              {errors.country && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.country}
-                </span>
-              )}
-            </fieldset>
-            <fieldset className="flex flex-col gap-2 relative w-full fieldset">
-              <legend className="fieldset-legend">{t("website_url")}</legend>
-              <input
-                name="website"
-                type="url"
-                className="input input-bordered input-md"
-                placeholder={t("write_website_url")}
-                value={website}
-                onChange={(e) => setWebsite(e.target.value)}
-                aria-label={t("aria.createCase.websiteUrl")}
-              />
-              {errors.website && (
-                <span className="absolute -bottom-4 text-xs text-red-500">
-                  {errors.website}
-                </span>
-              )}
-            </fieldset>
             <fieldset className="flex flex-col gap-2 relative w-full fieldset">
               <legend className="fieldset-legend">{t("choose_images")}</legend>
               <input

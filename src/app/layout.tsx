@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Manrope, Outfit, Poppins } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import I18nProvider from "@/i18n/i18nProvider";
 
-const poppins = Poppins({
+const poppins = Manrope({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -15,9 +14,9 @@ export const metadata: Metadata = {
     template: "%s - Junker's Køreskole",
   },
   description:
-    "Velkommen til Junker's Køreskole – vi tilbyder kørekort til bil, generhvervelse, trailer og traktor med fokus på tryghed og kvalitet.",
+    "Tag kørekort i Ribe, Grindsted eller Billund hos Junker’s Køreskole. Vi tilbyder undervisning til bil, trailer, traktor og generhvervelse – med fokus på tryghed og høj beståelsesprocent",
   metadataBase: new URL("https://www.xn--junkerskreskole-dub.dk"),
-  manifest: "/manifest.json",
+
   openGraph: {
     title: "Junker's Køreskole",
     description:
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Junker's Køreskole",
     description:
-      "Tryg og professionel køreuddannelse – bil, generhvervelse, trailer og traktor. Find os i Billund, Ribe og Grindsted.",
+      "Tryg og professionel undervisning til kørekort – bil, generhvervelse, trailer og traktor. Find os i Billund, Ribe og Grindsted.",
     images: ["/opengraph-image.png"],
   },
   icons: {

@@ -1,6 +1,7 @@
 {
   "edit": "Edit",
   "save": "Save",
+  "saving": "Saving...",
   "update": "Update",
   "updating": "Updating...",
   "delete": "Delete",
@@ -13,18 +14,14 @@
   "light": "Light",
   "dark": "Dark",
   "new": "new",
-  "write_company_name": "Write company name...",
-  "write_contact_person": "Write contact person...",
+  "write_title": "Write title...",
   "write_desc": "Write a description...",
   "write_city": "Write a city...",
-  "write_country": "Write a country...",
-  "company_name": "Company Name",
-  "contact_person": "Contact Person",
+  "title": "Title",
   "details": "Details",
   "desc": "Description",
   "description": "Description",
   "city": "City",
-  "country": "Country",
   "creation_date": "Creation Date",
   "image_update": "Update Image",
   "choose_images": "Choose Image",
@@ -119,6 +116,7 @@
   "loading_request": "Loading Requests...",
   "loading_users": "Loading Users...",
   "loading_packages": "Loading Packages...",
+  "loading_teachers": "Loading Instructors...",
   "loading_jobs": "Loading Jobs...",
   "no_users": "No users available",
   "no_cases": "No cases available",
@@ -131,95 +129,94 @@
   "site_setup": "Site Setup",
   "layout_settings": "Layout Settings",
   "packages": "Packages",
-  "createJob": {
-    "formTitle": "Create Job Posting",
-    "title": "Job Title",
-    "subtitle": "Headline",
-    "jobType": "Job Type",
-    "workplace": "Workplace",
-    "startType": "Start Time",
-    "deadline": "Application Deadline",
-    "description": "Job Description",
-    "create": "Create Job",
-    "creating": "Saving...",
-    "loading": "Loading job form...",
-    "placeholders": {
-      "title": "Enter a job title...",
-      "subtitle": "Enter a headline..."
-    },
-    "errors": {
-      "title": "Title is required",
-      "subtitle": "Subtitle is required",
-      "desc": "Description is required",
-      "type": "Job type is required",
-      "workplace": "Workplace is required",
-      "deadline": "Deadline is required",
-      "start": "Select a start date or start type"
-    }
-  },
-  "updateJob": {
-    "formTitle": "Edit Job Posting",
-    "title": "Job Title",
-    "subtitle": "Headline",
-    "jobType": "Job Type",
-    "workplace": "Workplace",
-    "startType": "Start Time",
-    "deadline": "Application Deadline",
-    "description": "Job Description",
+
+  "updatePackage": {
+    "formTitle": "Edit Package",
+    "title": "Package Name",
+    "price": "Price",
+    "desc": "Description",
     "save": "Save Changes",
     "saving": "Saving...",
-    "loading": "Loading job data...",
+    "loading": "Loading package...",
     "placeholders": {
-      "title": "Enter a new job title...",
-      "subtitle": "Enter a new headline..."
+      "title": "Enter a new package name..."
     },
     "errors": {
       "title": "Title is required",
-      "subtitle": "Headline is required",
-      "desc": "Description is required",
-      "type": "Job type is required",
-      "workplace": "Workplace is required",
-      "deadline": "Application deadline is required",
-      "start": "Select either a start date or start type"
+      "desc": "Description is required"
     }
   },
-  "jobsDetails": {
-    "loading": "Loading job details...",
-    "title": "Job details",
-    "back": "Back",
-    "edit": "Edit",
-    "details": "Details",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "apply": "Apply now",
-    "deadline": "Application Deadline",
-    "active": "Active",
-    "inactive": "Inactive",
-    "delete_job_confirmation": "Confirm job deletion",
-    "delete_job_prompt": "Are you sure you want to delete this job?",
-    "delete_job_warning": "This action cannot be undone.",
-    "deleted_application": "Application deleted",
-    "updated_job": "Job updated",
+  "createTeacher": {
+    "formTitle": "Create Driving Instructor",
+    "name": "Name",
+    "image": "Image",
+    "since": "Driving Insctructor since",
+    "imageFormats": "Accepted formats: png, webp, jpeg, jpg",
+    "desc": "Description in Danish",
+    "descEng": "Description in English",
+    "placeholders": {
+      "name": "Enter teacher's name...",
+      "since": "Select date for start as driving instructor...",
+      "desc": "Write about the driving instructor in Danish...",
+      "descEng": "Write about the driving instructor in English..."
+    }
+  },
+  "updateTeacher": {
+    "formTitle": "Update Driving Instructor",
+    "name": "Name",
+    "image": "Image",
+    "since": "Instructor since",
+    "desc": "Description in Danish",
+    "descEng": "Description in English",
+    "imageFormats": "Accepted formats: png, webp, jpeg, jpg",
+    "placeholders": {
+      "name": "Edit instructor's name...",
+      "since": "Update instructor start date...",
+      "desc": "Update the instructor description...",
+      "descEng": "Write about the instructor in English..."
+    }
+  },
+  "packageDetails": {
+    "loading": "Loading package details...",
+    "title": "Package details",
+    "updated_package": "Package updated",
     "fields": {
-      "title": "Job title",
-      "type": "Job type",
-      "startDate": "Start date / type",
-      "workplace": "Workplace",
-      "deadline": "Application deadline",
-      "createdAt": "Created at",
+      "title": "Package Title",
+      "price": "Price",
+      "desc": "Description",
       "unknown": "Unknown"
     },
-    "applications": {
-      "title": "Candidate list",
-      "noApplications": "No applications found.",
-      "noReason": "No message provided"
+    "features": {
+      "additional": "Fees not included in the package",
+      "title": "Package Features",
+      "price": "Price",
+      "included": "Included",
+      "baseIncludedTitle": "All of Legal Package",
+      "baseIncludedValue": "(Value 14.495,-)",
+      "valueLabel": "Value {{price}},-"
     }
   },
+  "teachersDetails": {
+    "loading": "Loading teacher data...",
+    "title": "Driving Instructor Details",
+    "updated_teacher": "Teacher updated",
+    "fields": {
+      "title": "Title",
+      "name": "Name",
+      "desc": "Description",
+      "image": "Image",
+      "unknown": "Unknown",
+      "since": "Driving Insctructor since"
+    }
+  },
+
   "setup": {
-    "jobs": "Jobs",
+    "packages": "Packages",
+    "teachers": "Driving Instructors",
     "create": "Create",
-    "job": "job",
-    "job_details": "Job details",
+    "package": "Package",
+    "teacher": "Driving Instructor",
+    "package_details": "Package details",
     "unknown": "Unknown",
     "mobile": "Phone",
     "email": "Email",
@@ -251,7 +248,6 @@
     "warning": "Warning: The old image cannot be restored",
     "cancel": "Cancel"
   },
-  "solutions": "Solutions",
   "about": "About",
   "contact": "Contact",
   "company": "Company Name",
@@ -273,233 +269,129 @@
   "time_expired": "Time has expired",
   "website_url": "Website URL",
   "write_website_url": "Enter website URL...",
-  "PriceEstimator": {
-    "title": "Price Estimator",
-    "loading": "Loading services…",
-    "error": "Error: {{message}}",
-    "noVAT": "No VAT",
-    "choosePack": "Choose a starter pack:",
-    "packLabel": "€{{price}} – {{label}}",
-    "countryForVAT": "Country for VAT:",
-    "addServices": "Add extra services:",
-    "serviceLabel": "€{{price}} – {{label}}",
-    "subtotal": "Subtotal",
-    "vat": "VAT ({{name}} - {{rate}}%)",
-    "totalInclVAT": "Total incl. VAT",
-    "getInTouch": "Get in Touch",
-    "disclaimer": "Disclaimer: The price shown is only an estimation and may vary. Final pricing will be confirmed upon consultation."
-  },
-  "Starter": {
-    "title": "Starter",
-    "description": "Perfect for small businesses or personal brands",
-    "features": {
-      "customDesign": "Custom Design",
-      "responsiveFast": "Responsive and fast",
-      "basicSEO": "Basic SEO setup",
-      "simpleCMS": "Simple CMS or static content"
-    }
-  },
-  "Pro": {
-    "title": "Pro",
-    "including": "Included",
-    "description": "Ideal for digital products and feature-rich solutions",
-    "features": {
-      "bespokeUIUX": "Bespoke UI/UX design",
-      "featureRich": "Feature-rich functionality",
-      "databaseIntegration": "Database integration",
-      "adminDashboard": "Admin dashboard"
-    }
-  },
-  "Premium": {
-    "title": "Premium",
-    "including": "Included",
-    "description": "Everything included – premium features, visuals, and 3D",
-    "features": {
-      "sleekLayout": "Sleek, animated layout",
-      "parallaxEffects": "Subtle parallax & motion effects",
-      "integrated3D": "Integrated 3D elements",
-      "performance": "Built for performance"
-    }
-  },
 
-  "startingFrom": "Starting from",
-  "customQuotePrompt": "Get your custom quote in few seconds",
-  "getQuote": "Get a Quote",
-  "Header": {
-    "brandName": "Arzonic",
-    "solutions": "Solutions",
-    "logoAlt": "Arzonic Agency Logo",
-    "cases": "Cases",
-    "pricing": "Pricing",
+  "header": {
+    "brandName": "Junker's Driving School",
+    "logoAlt": "Junker's Driving School Logo",
+    "registration": "Registration",
+    "prices": "Prices",
     "contact": "Contact",
-    "getStarted": "Get Started",
+    "information": "Information",
+    "departments": "Departments",
     "followUs": "Follow us",
     "facebook": "Facebook",
     "instagram": "Instagram",
     "dropdown": {
-      "customWebsites": "Custom Websites",
-      "webApplications": "Web Applications",
-      "visualization": "3D Visualization",
-      "designAnimation": "Design & Animation",
-      "marketing": "Marketing"
-    },
-    "aria": {
-      "navigation": {
-        "linkToHome": "Go to homepage",
-        "linkToSolutions": "Go to solutions",
-        "linkToCases": "Go to cases",
-        "linkToContact": "Go to contact",
-        "getStarted": "Get started",
-        "linkToOverview": "Go to overview",
-        "linkToContent": "Go to content",
-        "linkToCustomers": "Go to customers",
-        "linkToSettings": "Go to settings"
+      "prices": {
+        "car": "Car License",
+        "trailer": "Trailer License",
+        "tractor": "Tractor License",
+        "reacquisition": "License Reacquisition"
+      },
+      "city": {
+        "ribe": "Ribe",
+        "billund": "Billund",
+        "grindsted": "Grindsted"
+      },
+      "information": {
+        "about": "About the school",
+        "contact": "Contact us",
+        "teachers": "The instructors"
       }
     }
   },
-  "Hero": {
-    "title": "MODERN WEB AGENCY",
-    "description": "We specialize in building high-performance websites and immersive 3D experiences using modern, custom-built technology",
-    "noTemplates": "— no templates, no WordPress",
-    "customWebsites": "Custom Websites",
-    "visualization": "3D Visualization",
-    "webApplications": "Web Applications",
-    "seeMore": "See Solutions"
-  },
-  "Present": {
-    "title": "Superfast websites – built for performance and growth",
-    "customDesign": {
-      "title": "Custom design that reflects you",
-      "description": "No templates. No compromises. We design every pixel to match your brand and make you stand out."
-    },
-    "easyToManage": {
-      "title": "Easy to manage",
-      "description": "Update your content in seconds. Our built-in dashboard gives you full control."
-    },
-    "blazingFast": {
-      "title": "Blazing fast, everywhere",
-      "description": "No more sluggish load times. Your site is built for speed – on mobile, desktop and all between."
-    },
-    "builtToGrow": {
-      "title": "Built to grow with your business",
-      "description": "From small team to full-scale operation. Your website is flexible, future-proof, and ready to scale with you."
-    }
-  },
-  "Preview": {
-    "title": "Your Dashboard, Your Way",
-    "subtitle": "Stay in control with a dashboard built around you",
-    "aria": {
-      "imageAlt": "Example of a solution"
-    }
-  },
-  "NavProcess": {
-    "header": {
-      "title": "This is how our customer process looks like!",
-      "description-first": "We guide you ",
-      "description-second": "through every step with clarity, creativity, and care."
-    },
-    "steps": {
-      "discoveryStrategy": "Discovery & Strategy",
-      "designExperience": "Design & Experience",
-      "developmentIntegration": "Development & Integration",
-      "launchSupport": "Launch & Support"
+
+  "hero": {},
+  "taskSelect": {
+    "legend": "What type of license?",
+    "placeholder": "Select license type",
+    "options": {
+      "car": "Driving license for Car",
+      "trailer": "Driving license for Trailer",
+      "traktor": "Driving license for Tractor",
+      "generhvervelse": "Reacquiring driving license",
+      "other": "Other"
     },
     "aria": {
-      "discovery-strategy": "Go to Discovery & Strategy",
-      "design-experience": "Go to Design & Experience",
-      "development-integration": "Go to Development & Integration",
-      "launch-support": "Go to Launch & Support"
+      "selectTask": "Select license type"
     }
   },
-  "Process": {
-    "discoveryStrategy": {
-      "title": "Discovery & Strategy",
-      "subtitle": "From Vision to Roadmap",
-      "description": "Just like any great expedition, your project begins with a clear destination and a solid route. We explore your goals, understand your market, and build a step-by-step plan to reach your digital summit.",
-      "steps": [
-        "Clarify your destination (vision & purpose)",
-        "Understand your audience and terrain",
-        "Create a strategic map with key checkpoints",
-        "Set clear scope and timeframes for the journey"
-      ]
+
+  "coursePage": {
+    "filter": {
+      "reset": "×"
     },
-    "designExperience": {
-      "title": "Design & Experience",
-      "subtitle": "Shaping the Experience",
-      "description": "With the journey mapped, we bring it to life. Starting with wireframes, we layer in clarity, emotion, and interaction—designing every screen to feel effortless and aligned with your goals.",
-      "steps": [
-        "Map the user journey with intent",
-        "Transform ideas into structured wireframes",
-        "Design responsive layouts across all devices",
-        "Focus relentlessly on user needs and simplicity"
-      ]
-    },
-    "developmentIntegration": {
-      "title": "Development & Integration",
-      "subtitle": "Building Solid Foundations",
-      "description": "We turn designs into powerful, scalable, and future-proof digital solutions — ready to grow with your business needs.",
-      "steps": [
-        "Frontend and backend development",
-        "Clean, scalable, and efficient code",
-        "API and third-party system integrations",
-        "Ongoing testing for quality assurance"
-      ]
-    },
-    "launchSupport": {
-      "title": "Launch & Support",
-      "subtitle": "Bringing It to Life – and Beyond",
-      "description": "Launching is just the beginning. We make sure your website goes live without a hitch – and we stay with you to ensure it continues to perform, evolve, and support your business goals.",
-      "steps": [
-        "Smooth and secure go-live process",
-        "Continuous support and updates",
-        "Performance tracking and improvements",
-        "Scalable solutions for future needs"
-      ]
+    "loading": "Loading...",
+    "noCourses": "No courses found.",
+    "seats": "Seats:",
+    "register": "Register",
+    "viewSchedule": "View schedule",
+    "modal": {
+      "alt": "Schedule overview"
     }
   },
-  "OfferForm": {
-    "title": "Request a custom quote",
+  "korelaerernePage": {
+    "title": "Meet Our Driving Instructors",
+    "subtitle": "Professional and Dedicated Instructors",
+    "description": "Our team of experienced driving instructors is here to guide you every step of the way on your journey to getting your driver's license. We provide personalized instruction to ensure you feel confident and well-prepared for both the theory and practical driving tests.",
+    "cta": "Get to Know Our Instructors"
+  },
+  "contactPage": {
+    "title": "Contact us",
+    "readyTitle": "Contact us directly",
+    "contactPrompt": "We’re ready to help if you have questions about our courses, pricing or process.",
+    "ambitionMessage": "Call or email us – we’ll get back to you quickly.",
+    "callPrompt": "Call us at",
+    "phoneNumber": "+45 22 77 12 46",
+    "callmailPrompt": "Call or email us",
+    "emailAddress": "junkerskoreskole@gmail.com",
+    "imageAlt": "contact us"
+  },
+  "contactForm": {
+    "title": "Questions about driving courses or licenses?",
     "fields": {
       "name": {
         "label": "Name",
         "placeholder": "Enter your name"
       },
       "email": {
-        "label": "Email Address",
+        "label": "Email address",
         "placeholder": "Enter your email"
       },
       "phone": {
-        "label": "Phone Number",
+        "label": "Phone number",
         "placeholder": "Enter your phone number"
       },
       "message": {
         "label": "Message",
-        "placeholder": "Describe your needs, preferred time, address, etc."
+        "placeholder": "Write your question or if you'd like to be contacted"
       },
       "consent": {
-        "label": "I accept the storage of my information for up to 30 days",
+        "label": "I agree to store my information for up to 30 days",
         "readMore": "Read more"
-      },
-      "website_url": {
-        "label": "Website URL",
-        "placeholder": "Enter website URL..."
       }
     },
     "buttons": {
-      "submit": "Send Request",
+      "submit": "Send message",
       "sending": "Sending..."
     },
     "success": {
-      "title": "Thank you for your request!",
-      "message": "We will get back to you as soon as possible.",
+      "title": "Thank you for your message!",
+      "message": "We’ll get back to you as soon as possible.",
       "closeButton": "Close"
     },
     "errors": {
       "invalidPhone": "Invalid phone number.",
-      "consentRequired": "You must accept storage of your information.",
+      "consentRequired": "You must accept data storage.",
       "generic": "Something went wrong. Please try again later."
     },
     "aria": {
+      "name": "Enter your name",
+      "email": "Enter your email",
+      "phone": "Enter your phone number",
+      "message": "Enter your message",
+      "submit": "Submit the form",
+      "consent": "Accept consent",
       "nameInput": "Enter your name",
       "emailInput": "Enter your email",
       "phoneInput": "Enter your phone number",
@@ -508,115 +400,65 @@
       "consentCheckbox": "Accept consent"
     }
   },
-  "TaskSelect": {
-    "legend": "Which solution are you interested in?",
-    "placeholder": "Choose Solution",
-    "options": {
-      "website": "Website",
-      "webApp": "Web App",
-      "visualization": "3D Visualization",
-      "branding": "Branding",
-      "marketing": "Marketing",
-      "other": "Other"
+  "productPage": {
+    "common": {
+      "btn": "See Courses"
     },
-    "aria": {
-      "selectTask": "Select a task"
+    "bil-korekort": {
+      "title": "Car Driving License",
+      "subtitle": "(Category B)",
+      "processTitle": "How the process works",
+      "hero": "Get your car license with us – safe, fast and effective.",
+      "cta": "Ready to get your car driving license?",
+      "body": "We offer training with modern cars and experienced instructors. You'll receive both theory and practical lessons in a safe environment.\nStart your journey towards getting your license today!"
+    },
+    "trailer-korekort": {
+      "title": "Trailer Driving License",
+      "subtitle": "(Category B/E)",
+      "processTitle": "How trailer training works",
+      "hero": "Gain the right to tow larger trailers – we guide you all the way.",
+      "cta": "Do you need a trailer license for work or leisure?",
+      "body": "Our trailer courses give you the knowledge and skills needed to tow safely.\nTheory, practice, and exam – we’ll guide you through it all."
+    },
+    "traktor-korekort": {
+      "title": "Tractor Driving License",
+      "subtitle": "(Category T)",
+      "processTitle": "Tractor license process",
+      "hero": "Get your tractor license quickly and easily with us.",
+      "cta": "Need a tractor license for agriculture or work?",
+      "body": "Our tractor courses offer professional training and hands-on experience.\nIdeal for young people and adults working in agriculture."
+    },
+    "generhvervelse-korekort": {
+      "title": "Retake of Driving License",
+      "subtitle": "",
+      "processTitle": "How to get your license back",
+      "hero": "We’ll help you reclaim your license.",
+      "cta": "Need to reacquire your license after revocation?",
+      "body": "We offer targeted programs for those reacquiring their license.\nPersonal guidance and instruction to help you pass again."
     }
   },
-  "ContactPage": {
-    "title": "Start the dialogue",
-    "subtitle": "- completely non-binding",
-    "readyTitle": "Ready to get started?",
-    "contactPrompt": "Contact us today – we will quickly get back to you with an estimate or a discussion about the solution.",
-    "ambitionMessage": "We love ambitious ideas and are happy to help make them a reality.",
-    "callPrompt": "Call us at",
-    "phoneNumber": "+45 22 50 17 03",
-    "imageAlt": "hero"
+  "carPlans": {
+    "subtitle": "Choose the right package",
+    "vatNote": "Prices include VAT",
+    "paymentInfo": "Payment is due after registration"
   },
-  "PricingPage": {
-    "titleStart": "Flexible plans,",
-    "titleEnd": "Transparent pricing",
-    "subtitle": "Choose a solution that fits your needs – no surprises, just results",
-    "vatNote": "All prices are excluding VAT",
-    "aria": {
-      "getQuoteButton": "Get a quote"
-    },
-    "oneTime": "One-time (excl. service agreement)",
-    "monthly48": "Price per month over 48 months",
-    "paymentInfo": "All plans require service agreement, which includes maintenance, support, and hosting",
-    "oneTimeTab": "One-time",
-    "monthlyTab": "Monthly"
-  },
-  "PlansComparison": {
-    "title": "Compare our plans",
-    "table": {
-      "featureColumn": "Feature / Package"
-    },
-    "title-btn": "Ready to find your plan?",
-    "selectLabel": "Select a package to view details",
 
-    "text-btn": "Get Started",
-    "startingFrom": "Package Price",
-    "vatNote": "All prices are excl. VAT",
-    "legend": "Included | – Not included in standard package",
-    "features": {
-      "serviceFee": "Monthly Service Agreement",
-      "customDesign": "Custom design",
-      "responsive": "Responsive and fast",
-      "contactForm": "Contact form",
-      "seo": "SEO setup",
-      "cms": "CMS / Editable content",
-      "login": "User login and access",
-      "mail": "Mail system",
-      "dashboard": "Admin dashboard",
-      "database": "Database integration",
-      "users": "Customer Login",
-      "analytics": "Statistics and analytics",
-      "3d": "3D elements and animations",
-      "scroll": "Scroll effects and parallax"
-    },
-    "plans": {
-      "starter": {
-        "name": "Starter",
-        "price": "7,000 DKK",
-        "seo": "Basic",
-        "cms": "Simple"
-      },
-      "pro": {
-        "name": "Pro",
-        "price": "13,000 DKK",
-        "seo": "Advanced",
-        "cms": "Advanced"
-      },
-      "premium": {
-        "name": "Premium",
-        "price": "16,000 DKK",
-        "seo": "Advanced",
-        "cms": "Advanced"
-      }
-    },
+  "tractorPlans": {
+    "vatNote": "Prices include VAT",
+    "paymentInfo": "Payment is made after registration"
+  },
+  "retakePlans": {
+    "vatNote": "Prices include VAT",
+    "paymentInfo": "Payment is made after registration"
+  },
+  "trailerPlans": {
+    "vatNote": "Prices include VAT",
+    "paymentInfo": "Payment is made after registration"
+  },
+  "registerPage": {
+    "title": "Register for a course"
+  },
 
-    "aria": {
-      "getStartedButton": "Get started with pricing comparison"
-    }
-  },
-  "Support": {
-    "title": "We handle maintenance, support and hosting",
-    "items": {
-      "hosting": {
-        "title": "Hosting & domain management",
-        "desc": "We ensure your website is online, fast and reliable. No need to worry about technical setup, domain renewals or server operations."
-      },
-      "security": {
-        "title": "Backup & security updates",
-        "desc": "Your solution is continuously updated and backed up. We monitor, maintain and ensure everything runs securely and smoothly – always."
-      },
-      "support": {
-        "title": "Minor updates & support",
-        "desc": "You get continuous support and help with minor changes – whether it's content updates or small functional tweaks."
-      }
-    }
-  },
   "ConsentModal": {
     "title": "Consent & Privacy Policy",
     "section1": {
@@ -718,138 +560,30 @@
     "subtitle": "– in under a minute"
   },
   "Footer": {
-    "companyName": "Arzonic ApS",
-    "reliableTech": "Reliable solutions since 2024",
+    "brandName": "Junker's Køreskole",
+    "sloganSince": "With you all the way - since 2017",
     "aboutUs": "About Us",
     "jobs": "Jobs",
     "legal": "Legal",
-    "solutions": "Solutions",
-    "contactUs": "Contact Us",
-    "followUs": "Follow Us",
-    "newsletter": "Subscribe to our newsletter",
-    "newsletterPlaceholder": "Enter your email",
-    "subscribe": "Subscribe",
-    "rightsReserved": "All rights reserved."
+    "contactUs": "Contact Us"
   },
-  "CallToAction": {
-    "reachingBeyondBorders": "Beyond borders",
-    "collaborationMessage": "At Arzonic, we work with ambitious companies across Europe to strengthen their digital presence"
-  },
-  "solutionsPage": {
-    "common": {
-      "countryAllTitle": "Available in these countries:",
-      "btn": "Find your price"
+
+  "productCards": {
+    "bil": {
+      "title": "Bil",
+      "image": "/ribe.jpg"
     },
-    "custom-websites": {
-      "titleStart": "Custom",
-      "titleEnd": "Websites",
-      "hero": "Custom Websites that put your business in focus.",
-      "body": "Your website is often your first impression—and it needs to be perfect. We build tailored websites focused on your brand, goals, and target audience. Enjoy lightning-fast loading speeds, mobile-friendly design, and a flexible structure ready to scale.",
-      "processTitle": "Our process to make a new customized website",
-      "process": [
-        "Strategy and planning",
-        "User-friendly design",
-        "Custom development",
-        "SEO and performance optimization"
-      ],
-      "cta": "Ready to elevate your business online?"
+    "trailer": {
+      "title": "Trailer",
+      "image": "/billund.jpg"
     },
-    "web-applications": {
-      "titleStart": "Effective",
-      "titleEnd": "Web Applications",
-      "hero": "Digital solutions designed to streamline your operations and boost productivity.",
-      "body": "We create user-friendly web applications tailored to your business needs. Whether it's internal dashboards, customer-facing tools, or complex platforms, our solutions prioritize usability, speed, and security, helping your business grow efficiently.",
-      "processTitle": "Our process making a Web Application",
-      "process": [
-        "Needs analysis and consultation",
-        "Intuitive UI/UX design",
-        "Full-stack development",
-        "Testing, deployment, and ongoing support"
-      ],
-      "cta": "Let’s turn your digital vision into reality."
+    "traktor": {
+      "title": "Traktor",
+      "image": "/grindsted.jpg"
     },
-    "3d-visualization": {
-      "titleStart": "Professional",
-      "titleEnd": "3D Visualization",
-      "hero": "Stunning 3D visualizations that showcase your products and ideas clearly.",
-      "body": "Bring your products and projects to life with professional 3D visuals. We produce realistic renders and animations perfect for presentations, sales materials, or interactive web experiences, enhancing your brand’s appeal and customer engagement.",
-      "processTitle": "The process of creating 3D visualization",
-      "process": [
-        "Detailed 3D modeling",
-        "Realistic renderings and animations",
-        "Interactive web-ready 3D",
-        "Performance optimization for fast loading"
-      ],
-      "cta": "Showcase your business with impactful 3D visuals."
-    },
-    "design-animation": {
-      "titleStart": "Graphic Design &",
-      "titleEnd": "Animation",
-      "hero": "Memorable designs and animations that captivate your audience.",
-      "body": "Elevate your brand with powerful graphic designs and engaging animations. From distinctive brand identities to interactive animated content, we create visuals that clearly communicate your message and leave a lasting impression.",
-      "processTitle": "Our process of creating graphic design and animation",
-      "process": [
-        "Brand identity and visual style",
-        "Custom graphics and illustrations",
-        "Engaging animations",
-        "Integration across digital channels"
-      ],
-      "cta": "Make your brand unforgettable."
-    }
-  },
-  "countries": {
-    "denmark": "Denmark",
-    "sweden": "Sweden",
-    "norway": "Norway",
-    "finland": "Finland",
-    "germany": "Germany",
-    "netherlands": "Netherlands",
-    "belgium": "Belgium",
-    "ireland": "Ireland",
-    "switzerland": "Switzerland",
-    "estonia": "Estonia",
-    "poland": "Poland",
-    "czechia": "Czechia",
-    "latvia": "Latvia",
-    "lithuania": "Lithuania",
-    "austria": "Austria"
-  },
-  "CasesPage": {
-    "title": "What we have",
-    "highlight": "created for others",
-    "emptyState": {
-      "title": "No cases found",
-      "description": "We are working on adding more cases. Check back soon!"
-    }
-  },
-  "SolutionsPage": {
-    "title": "What we can",
-    "highlight": "create for you",
-    "custom-websites": "Custom websites",
-    "web-applications": "Web applications",
-    "visualization": "3D visualization",
-    "design-animation": "Design & animation"
-  },
-  "solutionscards": {
-    "custom": {
-      "title": "Custom Websites",
-      "description": "Tailor-made sites focused on design, performance, and conversion – built to reflect your identity.",
-      "image": "/backgrounds/custom-websites.jpg"
-    },
-    "webapp": {
-      "title": "Web Applications",
-      "description": "We build apps with dashboards, databases, and integrations – ideal for digital-first companies.",
-      "image": "/backgrounds/web-applications.jpg"
-    },
-    "visualization": {
-      "title": "3D Visualization",
-      "description": "Integrate interactive 3D directly into your site – ideal for showcasing products or unique brand stories.",
-      "image": "/backgrounds/3d-visualization.jpg"
-    },
-    "design": {
-      "title": "Design & Animation",
-      "description": "Modern UI and animations that create fluid, engaging interfaces with strong brand expression.",
-      "image": "/backgrounds/design-animation.jpg"
+    "generhvervelse": {
+      "title": "Generhvervelse",
+      "image": "/grindsted.jpg"
     }
   },
   "FAQ": {
@@ -872,130 +606,6 @@
     }
   },
 
-  "jobsPage": {
-    "titleStart": "Join the journey at",
-    "titleEnd": "Arzonic",
-    "noOpeningsTitle": "Thank you for your interest",
-    "noOpenings": "We currently have no open positions, but we’re always happy to hear from talented and passionate people. You’re welcome to send us an unsolicited application.",
-    "contactMail": "You can write to us at:",
-
-    "noMatchTitle": "Didn't find the right position?",
-    "noMatchDescription": "We're always looking for passionate people who love web, design, and technology. Feel free to send us an application.",
-    "sendApplication": "Send your application"
-  },
-  "applyJobForm": {
-    "title": "Submit your application",
-    "subtitle": "Fill in your details and feel free to attach your CV and application.",
-    "applyTo": "Apply to:",
-    "fields": {
-      "name": {
-        "label": "Full name",
-        "placeholder": "Enter your full name"
-      },
-      "email": {
-        "label": "Mail address",
-        "placeholder": "Enter your mail address"
-      },
-      "phone": {
-        "label": "Mobile number",
-        "placeholder": "Enter your mobile number"
-      },
-      "cv": {
-        "label": "Upload CV",
-        "maxSize": "Max size: 10 MB. PDF only."
-      },
-      "application": {
-        "label": "Upload application",
-        "maxSize": "Max size: 10 MB. PDF only."
-      },
-      "consent": {
-        "label": "I consent to having my information stored for up to 30 days",
-        "readMore": "Read more"
-      }
-    },
-    "aria": {
-      "nameInput": "Enter your name",
-      "emailInput": "Enter your mail address",
-      "phoneInput": "Enter your mobile number",
-      "cvInput": "Upload your CV",
-      "applicationInput": "Upload your application",
-      "consentCheckbox": "Give consent",
-      "submitButton": "Submit application"
-    },
-    "buttons": {
-      "submit": "Submit application",
-      "sending": "Sending..."
-    },
-    "errors": {
-      "invalidPhone": "Please enter a valid Danish phone number.",
-      "invalidEmail": "Please enter a valid email address.",
-      "consentRequired": "You must accept the consent to proceed.",
-      "alreadyAppliedMail": "You have already applied for this position with this email address.",
-      "alreadyAppliedMobile": "You have already applied for this position with this mobile number.",
-      "generic": "Something went wrong. Please try again later."
-    },
-    "success": {
-      "requestSent": "Your application has been submitted.",
-      "title": "Thank you for your application",
-      "message": "We have received your information and will get back to you.",
-      "closeButton": "Back to job post"
-    }
-  },
-
-  "estimator": {
-    "intro": {
-      "title": "Find out your project’s price",
-      "subtitle": "Answer just 4 quick questions and get a tailored price estimate. 100% free, no strings attached",
-      "startButton": "Start Now"
-    },
-    "form": {
-      "title": "Your estimate is ready!",
-      "subtitle": "Fill in your details to receive your custom estimate. We’ll send it directly to your inbox – no spam, no obligation",
-      "nextButton": "Next",
-      "namePlaceholder": "Your name",
-      "emailPlaceholder": "Your email",
-      "phonePlaceholder": "Phone number",
-      "submitButton": "Get your price"
-    },
-    "consent": {
-      "agree": "I agree to the",
-      "privacyPolicy": "Privacy Policy",
-      "and": "and data processing."
-    },
-    "thanks": {
-      "title": "Thank you for your request!",
-      "message": "We’ve received your details and price estimate.",
-      "followup": "You will soon receive an email with more information – and we’ll reach out if we have any questions or suggestions.",
-      "closeButton": "Close"
-    },
-    "error": {
-      "loadingQuestions": "Error loading questions:"
-    }
-  },
-  "aboutPage": {
-    "titleStart": "About us",
-    "titleEnd": " – Our journey and values",
-    "metaDescription": "We are Arzonic – a modern digital agency focused on web solutions, 3D, and user experience.",
-    "textOne": "Arzonic is a creative digital agency built on passion, curiosity, and a shared love for craftsmanship. We're a diverse team of specialists and newly graduated talents, each deeply engaged in our craft – from web development and UI/UX to 3D visualization and animation.",
-    "textTwo": "Our mindset is fresh and solution-driven. We don’t do cookie-cutter work – we explore what’s possible. Rooted in hobby projects and driven by a constant desire to learn, we create digital experiences that both perform and inspire.",
-    "team": [
-      {
-        "name": "Marc Møller",
-        "role": "PM & Frontend Developer",
-        "image": "/team/marc2.png"
-      },
-      {
-        "name": "Mikkel Toft",
-        "role": "3D Artist & UX Designer",
-        "image": "/team/mikkel.png"
-      },
-      {
-        "name": "Sebatian Porsche",
-        "role": "API & Backend Developer",
-        "image": "/team/sebastian.png"
-      }
-    ]
-  },
   "notFound": {
     "title": "404",
     "message": "Oops! The page you are looking for does not exist.",
@@ -1018,188 +628,24 @@
     "tablet": "Tablet",
     "unknown": "Unknown"
   },
-  "aria": {
-    "edit_user_button": "Edit user {{name}}",
-    "delete_user_button": "Delete user {{name}}",
-    "cancel_button": "Cancel",
-    "nav_settings_setup_tab": "Setup",
-    "nav_settings_users_tab": "Users",
-    "confirm_delete_button": "Confirm deletion",
-    "danishFlag": "Danish flag",
-    "badges": {
-      "customWebsites": "Category: Custom websites",
-      "visualization": "Category: 3D visualization",
-      "webApplications": "Category: Web applications"
-    },
-    "navigation": {
-      "linkToSolutions": "See more solutions",
-      "getStarted": "Get started",
-      "linkToCases": "Go to customer's website",
-      "linkToContact": "Go to contact",
-      "buttonSubmitForm": "Submit form",
-      "linkToOverview": "Go to overview",
-      "linkToContent": "Go to content",
-      "linkToCustomers": "Go to customers",
-      "linkToSettings": "Go to settings",
-      "linkToHome": "Go to homepage"
-    },
-    "topbar": {
-      "moreOptions": "More options",
-      "logout": "Log out"
-    },
-    "estimator": {
-      "nameInput": "Enter your name",
-      "emailInput": "Enter your email",
-      "phoneInput": "Enter your phone number",
-      "submitButton": "Submit the form",
-      "backButton": "Go back to the previous step"
-    },
-    "footer": {
-      "linkToCustomWebsites": "Go to custom websites",
-      "linkToWebApplications": "Go to web applications",
-      "linkTo3DVisualization": "Go to 3D visualization",
-      "linkToDesignAnimation": "Go to design and animation",
-      "linkToAbout": "Go to about us",
-      "linkToContact": "Go to contact",
-      "linkToJobs": "Go to jobs",
-      "linkToFacebook": "Go to Facebook",
-      "linkToInstagram": "Go to Instagram"
-    },
-    "language": {
-      "changeToDanish": "Change language to Danish",
-      "changeToEnglish": "Change language to English"
-    },
-    "FAQ": {
-      "q1": "Expand FAQ question 1",
-      "q2": "Expand FAQ question 2",
-      "q3": "Expand FAQ question 3",
-      "q4": "Expand FAQ question 4"
-    },
-    "solutionCards": {
-      "custom": "Go to Custom Websites solution",
-      "webapp": "Go to Web Applications solution",
-      "visualization": "Go to 3D Visualization solution",
-      "design": "Go to Design & Animation solution"
-    },
-    "theme": {
-      "switchToLight": "Switch to light theme",
-      "switchToDark": "Switch to dark theme"
-    },
-    "createCase": {
-      "companyName": "Enter company name",
-      "contactPerson": "Enter contact person",
-      "description": "Enter description",
-      "city": "Enter city",
-      "country": "Enter country",
-      "websiteUrl": "Enter website URL",
-      "chooseImage": "Choose image",
-      "create": "Create case",
-      "creating": "Creating case"
-    },
 
-    "cases": {
-      "back": "Back to overview",
-      "createCase": "Create a new case",
-      "caseCreated": "Case was created",
-      "caseUpdated": "Case was updated"
-    },
-    "casesListChange": {
-      "cardsView": "Switch to cards view",
-      "listView": "Switch to list view"
-    },
-    "casesPagination": {
-      "previousPage": "Go to the previous page",
-      "nextPage": "Go to the next page"
-    },
-    "updateReview": {
-      "contactInput": "Enter the contact person's name",
-      "companyInput": "Enter the company name",
-      "descriptionInput": "Enter the review description",
-      "save": "Save review",
-      "saving": "Saving review"
-    },
-    "createRating": {
-      "rate1": "Select rating 1 star",
-      "rate2": "Select rating 2 stars",
-      "rate3": "Select rating 3 stars",
-      "rate4": "Select rating 4 stars",
-      "rate5": "Select rating 5 stars"
-    },
-    "reviews": {
-      "backButton": "Go back",
-      "createReviewButton": "Create a new review"
-    },
-    "reviewsList": {
-      "editButton": "Edit review",
-      "deleteButton": "Delete review",
-      "cancelDeleteButton": "Cancel deletion",
-      "confirmDeleteButton": "Confirm deletion"
-    },
-    "reviewsListChange": {
-      "cardsView": "Switch to cards view",
-      "listView": "Switch to list view"
-    },
-    "reviewsPagination": {
-      "previousPage": "Go to the previous page",
-      "nextPage": "Go to the next page"
-    },
-    "reviewsRating": {
-      "star": "Star number {{index}}"
-    },
-    "navContent": {
-      "casesTab": "Switch to Cases tab",
-      "reviewsTab": "Switch to Reviews tab"
-    },
-    "navMessages": {
-      "requestsTab": "Switch to Requests tab",
-      "bookingsTab": "Switch to Bookings tab"
-    },
-    "requestNote": {
-      "inputNote": "Enter a note",
-      "submitButton": "Add note",
-      "deleteButton": "Delete note"
-    },
-    "updateRequest": {
-      "backButton": "Go back",
-      "companyInput": "Enter company name",
-      "mailInput": "Enter email address",
-      "mobileInput": "Enter mobile number",
-      "categorySelect": "Select task category",
-      "nameInput": "Enter contact person's name",
-      "addressInput": "Enter address and house number",
-      "cityInput": "Enter postal code and city",
-      "messageTextarea": "Enter message",
-      "submitButton": "Update customer"
-    },
-    "requests": {
-      "backButton": "Go back to the overview",
-      "deleteSelectedButton": "Delete selected requests",
-      "searchInput": "Search for requests"
-    },
-    "requestsActions": {
-      "editButton": "Edit customer",
-      "deleteButton": "Delete customer",
-      "dropdownMenu": "Open actions for customer"
-    },
-    "requestsDetails": {
-      "phoneLink": "Call the customer",
-      "mapLink": "Open customer's address on Google Maps",
-      "backButton": "Go back to the requests list"
-    },
-    "requestsList": {
-      "selectAllCheckbox": "Select all requests",
-      "individualCheckbox": "Select request",
-      "detailsButton": "View details for request"
-    },
-    "overview": {
-      "last7DaysTab": "View statistics for the last 7 days",
-      "last30DaysTab": "View statistics for the last 30 days",
-      "loadingSpinner": "Loading statistics"
-    },
-    "register": {
-      "nameInput": "Enter your name",
-      "emailInput": "Enter your email address",
-      "passwordInput": "Enter your password"
-    }
+  "SEO": {
+    "titleHome": "Top Driving School | Get Your Driver's License Safely",
+    "descHome": "Welcome to our modern driving school focused on safety, flexibility, and personal instruction. Sign up online today.",
+
+    "titlePrices": "Driving License Prices | Transparent Packages with No Hidden Fees",
+    "descPrices": "Check our driving license prices and compare packages. From Basic to Platinum – find the one that suits you best.",
+
+    "titleContact": "Contact Us | We're Ready to Help You Move Forward",
+    "descContact": "Have questions? Contact our friendly team for assistance with registration, pricing, or general inquiries.",
+
+    "titleTilmelding": "Sign Up for Driving Lessons | Start Your Journey Today",
+    "descTilmelding": "Fill out our registration form and begin your driving course easily. Quick, simple, and without obligation.",
+
+    "titleInformation": "Driving License Info | FAQs and Rules Explained",
+    "descInformation": "Find answers to the most common questions about driving licenses, regulations, lessons, and tests. Always updated.",
+
+    "titleTeachers": "Meet Our Driving Instructors | Experienced and Dedicated",
+    "descTeachers": "Read about our skilled and experienced instructors who ensure safe and effective driving lessons from day one."
   }
 }
