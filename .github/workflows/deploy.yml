@@ -15,6 +15,12 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: 🧹 Clean old files
+        run: |
+          echo "🧹 Cleaning existing build and dependencies..."
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
+          rm -rf node_modules package-lock.json .next
+
       - name: 🔄 Pull latest code from GitHub
         run: |
           echo "⚠️ Pulling latest changes..."
@@ -22,18 +28,18 @@ jobs:
           git fetch --all
           git reset --hard origin/main
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install stable dependencies (Next.js 14)
         run: |
           set -e
-          echo "📦 Installing dependencies..."
+          echo "📦 Installing stable dependencies..."
           cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
-          npm ci
+          npm install next@14 react@18 react-dom@18 --force
 
       - name: 🔧 Build Next.js project
         run: |
           set -e
-          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
           echo "⚡ Building Next.js app..."
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
           npm run build
           if [ ! -d ".next" ]; then
             echo "❌ ERROR: .next/ folder not found after build"
