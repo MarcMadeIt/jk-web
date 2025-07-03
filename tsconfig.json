@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/admin/content/reviews/createReview",
-    "next.config.mjs"
+    "next.config.ts"
   ],
   "exclude": ["node_modules", "supabase"]
 }

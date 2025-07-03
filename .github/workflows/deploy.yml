@@ -15,12 +15,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: 🧹 Clean old files
-        run: |
-          echo "🧹 Cleaning existing build and dependencies..."
-          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
-          rm -rf node_modules package-lock.json .next
-
       - name: 🔄 Pull latest code from GitHub
         run: |
           echo "⚠️ Pulling latest changes..."
@@ -28,18 +22,18 @@ jobs:
           git fetch --all
           git reset --hard origin/main
 
-      - name: 📦 Install stable dependencies (Next.js 14)
+      - name: 📦 Install dependencies
         run: |
           set -e
-          echo "📦 Installing stable dependencies..."
+          echo "📦 Installing dependencies..."
           cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
-          npm install next@14 react@18 react-dom@18 --force
+          npm ci
 
       - name: 🔧 Build Next.js project
         run: |
           set -e
-          echo "⚡ Building Next.js app..."
           cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
+          echo "⚡ Building Next.js app..."
           npm run build
           if [ ! -d ".next" ]; then
             echo "❌ ERROR: .next/ folder not found after build"
@@ -59,7 +53,7 @@ jobs:
           pm2 delete jk-web-app || true
 
           echo "🚀 Starting app with PM2 on port 3700..."
-          pm2 start npm --name "jk-web-app" -- start -- -p 3700
+          PORT=3700 pm2 start npm --name "jk-web-app" -- start
           pm2 save
           pm2 list
 
