@@ -22,12 +22,23 @@ jobs:
           git fetch --all
           git reset --hard origin/main
 
-      - name: 📦 Install dependencies
+      - name: 🧹 Clean node_modules and lockfile
+        run: |
+          echo "🧹 Removing node_modules, lockfile, and .next..."
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
+          rm -rf node_modules package-lock.json .next
+
+      - name: 📦 Install fresh dependencies
         run: |
           set -e
-          echo "📦 Installing dependencies..."
+          echo "📦 Installing dependencies cleanly..."
           cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
-          npm ci
+          npm install
+
+      - name: 🔇 Disable Next.js telemetry
+        run: |
+          cd /home/jk-web/htdocs/ny.junkerskøreskole.dk
+          npx next telemetry disable
 
       - name: 🔧 Build Next.js project
         run: |
